@@ -27,4 +27,8 @@ class Berita extends Model
     public function Kat_Berita(){
         return $this->belongsTo(Kat_Berita::class, 'kategori_id', 'id');
     }
+
+    public function Komentar(){
+        return $this->hasMany(Komentar::class, 'berita_id', 'id');
+    }
 }

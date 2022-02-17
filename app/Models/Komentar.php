@@ -12,8 +12,13 @@ class Komentar extends Model
     protected $primarykey = 'id';
     protected $guarded = [];
     protected $fillable = [
+        'berita_id',
         'nama',
         'email',
         'komentar'
     ];
+
+    public function Berita(){
+        return $this->belongsTo(Berita::class, 'berita_id', 'id');
+    }
 }

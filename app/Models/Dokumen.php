@@ -14,6 +14,7 @@ class Dokumen extends Model
     protected $fillable = [
         'nama_doc',
         'link',
+        'file',
         'keterangan'
     ];
 }
