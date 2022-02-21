@@ -32,9 +32,6 @@
                         <td><button class="btn btn-success float-end" onclick="copy('login')">Copy</button></td>
                     </tr>
                 </tbody>
-                <tbody class="mb-2 py-2">
-
-                </tbody>
             </table>
             <div class="hljs-code">
                 <pre>
