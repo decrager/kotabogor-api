@@ -74,7 +74,7 @@ class RelationController extends Controller
 
         return response()->json([
             'message' => 'Data album With pengguna Loaded Successfully',
-            'agenda' => $album
+            'album' => $album
         ], Response::HTTP_OK);
     }
 
@@ -93,7 +93,7 @@ class RelationController extends Controller
 
         return response()->json([
             'message' => 'Data album With pengguna Loaded Successfully',
-            'agenda' => $album
+            'album' => $album
         ], Response::HTTP_OK);
     }
 
@@ -112,7 +112,7 @@ class RelationController extends Controller
 
         return response()->json([
             'message' => 'Data banner_announce With pengguna Loaded Successfully',
-            'agenda' => $banner
+            'banner_announce' => $banner
         ], Response::HTTP_OK);
     }
 
@@ -133,7 +133,7 @@ class RelationController extends Controller
 
         return response()->json([
             'message' => 'Data banner_announce With pengguna Loaded Successfully',
-            'agenda' => $banner
+            'banner_announce' => $banner
         ], Response::HTTP_OK);
     }
 
@@ -152,7 +152,7 @@ class RelationController extends Controller
 
         return response()->json([
             'message' => 'Data berita With kategori & pengguna Loaded Successfully',
-            'agenda' => $berita
+            'berita' => $berita
         ], Response::HTTP_OK);
     }
 
@@ -173,7 +173,7 @@ class RelationController extends Controller
 
         return response()->json([
             'message' => 'Data berita With kategori & pengguna Loaded Successfully',
-            'agenda' => $berita
+            'berita' => $berita
         ], Response::HTTP_OK);
     }
 
@@ -190,7 +190,7 @@ class RelationController extends Controller
 
         return response()->json([
             'message' => 'Data foto With album Loaded Successfully',
-            'agenda' => $foto
+            'foto' => $foto
         ], Response::HTTP_OK);
     }
 
@@ -209,7 +209,7 @@ class RelationController extends Controller
 
         return response()->json([
             'message' => 'Data foto With album Loaded Successfully',
-            'agenda' => $foto
+            'foto' => $foto
         ], Response::HTTP_OK);
     }
 
@@ -228,7 +228,7 @@ class RelationController extends Controller
 
         return response()->json([
             'message' => 'Data foto With album Loaded Successfully',
-            'agenda' => $komentar
+            'berita' => $komentar
         ], Response::HTTP_OK);
     }
 
@@ -249,7 +249,7 @@ class RelationController extends Controller
 
         return response()->json([
             'message' => 'Data foto With album Loaded Successfully',
-            'agenda' => $komentar
+            'berita' => $komentar
         ], Response::HTTP_OK);
     }
 
@@ -269,7 +269,7 @@ class RelationController extends Controller
 
         return response()->json([
             'message' => 'Data foto With album Loaded Successfully',
-            'agenda' => $statis
+            'statis' => $statis
         ], Response::HTTP_OK);
     }
 
@@ -291,7 +291,7 @@ class RelationController extends Controller
 
         return response()->json([
             'message' => 'Data foto With album Loaded Successfully',
-            'agenda' => $statis
+            'statis' => $statis
         ], Response::HTTP_OK);
     }
 
@@ -309,7 +309,7 @@ class RelationController extends Controller
 
         return response()->json([
             'message' => 'Data foto With album Loaded Successfully',
-            'agenda' => $video
+            'video' => $video
         ], Response::HTTP_OK);
     }
 
@@ -329,7 +329,7 @@ class RelationController extends Controller
 
         return response()->json([
             'message' => 'Data foto With album Loaded Successfully',
-            'agenda' => $video
+            'video' => $video
         ], Response::HTTP_OK);
     }
 }

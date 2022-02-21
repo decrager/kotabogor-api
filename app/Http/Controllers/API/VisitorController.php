@@ -35,7 +35,7 @@ class VisitorController extends Controller
         if ($user->role == 'admin') {
             $request->validate([
                 'tgl' => 'required|date',
-                'total_visit' => 'required|max:100'
+                'total_visit' => 'required|numeric'
             ]);
 
             $visitor = new Visitor;
@@ -62,7 +62,7 @@ class VisitorController extends Controller
         if ($user->role == 'admin') {
             $request->validate([
                 'tgl' => 'required|date',
-                'total_visit' => 'required|max:100'
+                'total_visit' => 'required|numeric'
             ]);
 
             $visitor->update([

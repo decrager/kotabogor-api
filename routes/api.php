@@ -25,6 +25,7 @@ use App\Http\Controllers\API\RelationController;
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/index', [AuthController::class, 'index']);
     Route::get('/indexAdmin', [AuthController::class, 'indexAdmin']);
+    Route::get('/logout', [AuthController::class, 'logout']);
 
     // Table Agenda
     Route::get('/Agenda', [AgendaController::class, 'view']);
@@ -164,4 +165,4 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/Relation/Video/{id}', [RelationController::class, 'VideoById']);
 });
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/loginAPI', [AuthController::class, 'login']);

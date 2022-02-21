@@ -34,8 +34,8 @@ class KatBeritaController extends Controller
 
         if ($user->role == 'admin') {
             $request->validate([
-                'kategori' => 'required|max:25',
-                'keterangan' => 'required|max:100'
+                'kategori' => 'required|max:50',
+                'keterangan' => 'required|max:50'
             ]);
 
             $katberita = new Kat_Berita;
@@ -61,8 +61,8 @@ class KatBeritaController extends Controller
 
         if ($user->role == 'admin') {
             $request->validate([
-                'kategori' => 'required|max:25',
-                'keterangan' => 'required|max:100'
+                'kategori' => 'required|max:50',
+                'keterangan' => 'required|max:50'
             ]);
 
             $katberita->update([
