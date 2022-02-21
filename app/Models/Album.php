@@ -18,11 +18,22 @@ class Album extends Model
         'user_id'
     ];
 
-    public function Pengguna(){
-        return $this->belongsTo(Pengguna::class, 'user_id', 'id');
+    public function Pengguna()
+    {
+        return $this->belongsTo(Pengguna::class, 'user_id', 'id')
+            ->select(
+                'id',
+                'nama',
+                'email',
+                'telp',
+                'username',
+                'role',
+                'foto',
+            );
     }
 
-    public function Foto(){
+    public function Foto()
+    {
         return $this->hasMany(Foto::class, 'album_id', 'id');
     }
 }

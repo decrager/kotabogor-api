@@ -21,11 +21,23 @@ class Statis extends Model
         'user_id'
     ];
 
-    public function Kat_Statis(){
-        return $this->belongsTo(Kat_Statis::class, 'kategori_id', 'id');
+    public function Kat_Statis()
+    {
+        return $this->belongsTo(Kat_Statis::class, 'kategori_id', 'id')
+            ->select('id', 'kategori', 'keterangan');
     }
 
-    public function Pengguna(){
-        return $this->belongsTo(Pengguna::class, 'user_id', 'id');
+    public function Pengguna()
+    {
+        return $this->belongsTo(Pengguna::class, 'user_id', 'id')
+            ->select(
+                'id',
+                'nama',
+                'email',
+                'telp',
+                'username',
+                'role',
+                'foto',
+            );
     }
 }

@@ -20,7 +20,17 @@ class Agenda extends Model
         'user_id'
     ];
 
-    public function Pengguna(){
-        return $this->belongsTo(Pengguna::class, 'user_id', 'id');
+    public function Pengguna()
+    {
+        return $this->belongsTo(Pengguna::class, 'user_id', 'id')
+            ->select(
+                'id',
+                'nama',
+                'email',
+                'telp',
+                'username',
+                'role',
+                'foto',
+            );
     }
 }

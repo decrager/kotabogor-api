@@ -22,81 +22,314 @@ class RelationController extends Controller
 {
     public function Agenda()
     {
+        $agenda = Agenda::with('Pengguna')
+            ->select(
+                'id',
+                'hari',
+                'tgl',
+                'waktu',
+                'lokasi',
+                'kegiatan',
+                'user_id'
+            )
+            ->get();
 
+        return response()->json([
+            'message' => 'Data agenda With pengguna Loaded Successfully',
+            'agenda' => $agenda
+        ], Response::HTTP_OK);
     }
 
     public function AgendaById($id)
     {
+        $agenda = Agenda::with('Pengguna')
+            ->select(
+                'id',
+                'hari',
+                'tgl',
+                'waktu',
+                'lokasi',
+                'kegiatan',
+                'user_id'
+            )
+            ->where('id', $id)
+            ->get();
 
+        return response()->json([
+            'message' => 'Data agenda With pengguna Loaded Successfully',
+            'agenda' => $agenda
+        ], Response::HTTP_OK);
     }
 
     public function Album()
     {
+        $album = Album::with('Pengguna')
+            ->select(
+                'id',
+                'judul',
+                'tgl',
+                'cover',
+                'user_id'
+            )->get();
 
+        return response()->json([
+            'message' => 'Data album With pengguna Loaded Successfully',
+            'agenda' => $album
+        ], Response::HTTP_OK);
     }
 
     public function AlbumById($id)
     {
+        $album = Album::with('Pengguna')
+            ->select(
+                'id',
+                'judul',
+                'tgl',
+                'cover',
+                'user_id'
+            )
+            ->where('id', $id)
+            ->get();
 
+        return response()->json([
+            'message' => 'Data album With pengguna Loaded Successfully',
+            'agenda' => $album
+        ], Response::HTTP_OK);
     }
 
     public function Banner_Announce()
     {
+        $banner = Banner_Announce::with('Pengguna')
+            ->select(
+                'id',
+                'judul',
+                'gambar',
+                'keterangan',
+                'status',
+                'link',
+                'user_id'
+            )->get();
 
+        return response()->json([
+            'message' => 'Data banner_announce With pengguna Loaded Successfully',
+            'agenda' => $banner
+        ], Response::HTTP_OK);
     }
 
     public function Banner_AnnounceById($id)
     {
+        $banner = Banner_Announce::with('Pengguna')
+            ->select(
+                'id',
+                'judul',
+                'gambar',
+                'keterangan',
+                'status',
+                'link',
+                'user_id'
+            )
+            ->where('id', $id)
+            ->get();
 
+        return response()->json([
+            'message' => 'Data banner_announce With pengguna Loaded Successfully',
+            'agenda' => $banner
+        ], Response::HTTP_OK);
     }
 
     public function Berita()
     {
+        $berita = Berita::with('Kat_Berita', 'Pengguna')
+            ->select(
+                'id',
+                'judul',
+                'kategori_id',
+                'isi',
+                'gambar',
+                'tgl',
+                'user_id'
+            )->get();
 
+        return response()->json([
+            'message' => 'Data berita With kategori & pengguna Loaded Successfully',
+            'agenda' => $berita
+        ], Response::HTTP_OK);
     }
 
     public function BeritaById($id)
     {
+        $berita = Berita::with('Kat_Berita', 'Pengguna')
+            ->select(
+                'id',
+                'judul',
+                'kategori_id',
+                'isi',
+                'gambar',
+                'tgl',
+                'user_id'
+            )
+            ->where('id', $id)
+            ->get();
 
+        return response()->json([
+            'message' => 'Data berita With kategori & pengguna Loaded Successfully',
+            'agenda' => $berita
+        ], Response::HTTP_OK);
     }
 
     public function Foto()
     {
+        $foto = Foto::with('Album')
+            ->select(
+                'id',
+                'album_id',
+                'judul',
+                'foto',
+                'keterangan'
+            )->get();
 
+        return response()->json([
+            'message' => 'Data foto With album Loaded Successfully',
+            'agenda' => $foto
+        ], Response::HTTP_OK);
     }
 
     public function FotoById($id)
     {
+        $foto = Foto::with('Album')
+            ->select(
+                'id',
+                'album_id',
+                'judul',
+                'foto',
+                'keterangan'
+            )
+            ->where('id', $id)
+            ->get();
 
+        return response()->json([
+            'message' => 'Data foto With album Loaded Successfully',
+            'agenda' => $foto
+        ], Response::HTTP_OK);
     }
 
     public function Komentar()
     {
+        $komentar = Berita::with('Komentar')
+            ->select(
+                'id',
+                'judul',
+                'kategori_id',
+                'isi',
+                'gambar',
+                'tgl',
+                'user_id'
+            )->get();
 
+        return response()->json([
+            'message' => 'Data foto With album Loaded Successfully',
+            'agenda' => $komentar
+        ], Response::HTTP_OK);
     }
 
     public function KomentarById($id)
     {
+        $komentar = Berita::with('Komentar')
+            ->select(
+                'id',
+                'judul',
+                'kategori_id',
+                'isi',
+                'gambar',
+                'tgl',
+                'user_id'
+            )
+            ->where('id', $id)
+            ->get();
 
+        return response()->json([
+            'message' => 'Data foto With album Loaded Successfully',
+            'agenda' => $komentar
+        ], Response::HTTP_OK);
     }
 
     public function Statis()
     {
+        $statis = Statis::with('Kat_Statis', 'Pengguna')
+            ->select(
+                'id',
+                'judul',
+                'kategori_id',
+                'isi',
+                'file',
+                'tgl',
+                'status',
+                'user_id'
+            )->get();
 
+        return response()->json([
+            'message' => 'Data foto With album Loaded Successfully',
+            'agenda' => $statis
+        ], Response::HTTP_OK);
     }
 
     public function StatisById($id)
     {
+        $statis = Statis::with('Kat_Statis', 'Pengguna')
+            ->select(
+                'id',
+                'judul',
+                'kategori_id',
+                'isi',
+                'file',
+                'tgl',
+                'status',
+                'user_id'
+            )
+            ->where('id', $id)
+            ->get();
 
+        return response()->json([
+            'message' => 'Data foto With album Loaded Successfully',
+            'agenda' => $statis
+        ], Response::HTTP_OK);
     }
 
     public function Video()
     {
+        $video = Video::with('Pengguna')
+            ->select(
+                'id',
+                'judul',
+                'cover',
+                'link',
+                'keterangan',
+                'user_id'
+            )->get();
 
+        return response()->json([
+            'message' => 'Data foto With album Loaded Successfully',
+            'agenda' => $video
+        ], Response::HTTP_OK);
     }
 
     public function VideoById($id)
     {
+        $video = Video::with('Pengguna')
+            ->select(
+                'id',
+                'judul',
+                'cover',
+                'link',
+                'keterangan',
+                'user_id'
+            )
+            ->where('id', $id)
+            ->get();
 
+        return response()->json([
+            'message' => 'Data foto With album Loaded Successfully',
+            'agenda' => $video
+        ], Response::HTTP_OK);
     }
 }

@@ -20,15 +20,35 @@ class Berita extends Model
         'user_id'
     ];
 
-    public function Pengguna(){
-        return $this->belongsTo(Pengguna::class, 'user_id', 'id');
+    public function Pengguna()
+    {
+        return $this->belongsTo(Pengguna::class, 'user_id', 'id')
+            ->select(
+                'id',
+                'nama',
+                'email',
+                'telp',
+                'username',
+                'role',
+                'foto',
+            );
     }
 
-    public function Kat_Berita(){
-        return $this->belongsTo(Kat_Berita::class, 'kategori_id', 'id');
+    public function Kat_Berita()
+    {
+        return $this->belongsTo(Kat_Berita::class, 'kategori_id', 'id')
+            ->select('id', 'kategori', 'keterangan');
     }
 
-    public function Komentar(){
-        return $this->hasMany(Komentar::class, 'berita_id', 'id');
+    public function Komentar()
+    {
+        return $this->hasMany(Komentar::class, 'berita_id', 'id')
+            ->select(
+                'id',
+                'berita_id',
+                'nama',
+                'email',
+                'komentar'
+            );
     }
 }

@@ -18,7 +18,17 @@ class Komentar extends Model
         'komentar'
     ];
 
-    public function Berita(){
-        return $this->belongsTo(Berita::class, 'berita_id', 'id');
+    public function Berita()
+    {
+        return $this->belongsTo(Berita::class, 'berita_id', 'id')
+            ->select(
+                'id',
+                'judul',
+                'kategori_id',
+                'isi',
+                'gambar',
+                'tgl',
+                'user_id'
+            );
     }
 }
