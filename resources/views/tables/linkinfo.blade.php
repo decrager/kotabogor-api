@@ -66,7 +66,7 @@
                             "judul": "varchar(50)",
                             "keterangan": "varchar(200)",
                             "link": "varchar(100)",
-                            "gambar": "varchar(50)",
+                            "gambar": "varchar(255)",
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }

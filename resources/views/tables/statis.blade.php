@@ -66,7 +66,7 @@
                             "judul": "varchar(50)",
                             "kategori_id": "int(11)",
                             "isi": "text",
-                            "file": "varchar(50)",
+                            "file": "varchar(255)",
                             "tgl": "date(yyyy-mm-dd)",
                             "status": "enum('0','1')",
                             "user_id": "int(11)",

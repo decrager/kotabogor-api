@@ -64,7 +64,7 @@
                         {
                             "id": "int(11)",
                             "judul": "varchar(100)",
-                            "gambar": "varchar(50)",
+                            "gambar": "varchar(255)",
                             "link": "varchar(100)",
                             "status": "enum('0','1')",
                             "created_at": "Timestamp",

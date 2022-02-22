@@ -65,7 +65,7 @@
                             "id": "int(11)",
                             "album_id": "int(11)",
                             "judul": "varchar(100)",
-                            "foto": "varchar(50)",
+                            "foto": "varchar(255)",
                             "keterangan": "varchar(200)",
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"

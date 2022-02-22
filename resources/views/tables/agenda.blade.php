@@ -65,7 +65,7 @@
                             "id": "int(11)",
                             "hari": "varchar(10)",
                             "tgl": "date(yyyy-mm-dd)",
-                            "waktu": "time(minute:second)",
+                            "waktu": "time(H:i:s)",
                             "lokasi": "varchar(100)",
                             "kegiatan": "varchar(250)",
                             "user_id": "int(11)",

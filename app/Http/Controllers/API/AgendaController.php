@@ -36,7 +36,7 @@ class AgendaController extends Controller
             $request->validate([
                 'hari' => 'required|max:10',
                 'tgl' => 'required|date',
-                'waktu' => 'required|date_format:H:i',
+                'waktu' => 'required|date_format:H:i:s',
                 'lokasi' => 'required|max:100',
                 'kegiatan' => 'required|max:250',
                 'user_id' => 'required|max:11'
@@ -71,7 +71,7 @@ class AgendaController extends Controller
             $request->validate([
                 'hari' => 'required|max:10',
                 'tgl' => 'required|date',
-                'waktu' => 'required|date_format:H:i',
+                'waktu' => 'required|date_format:H:i:s',
                 'lokasi' => 'required|max:100',
                 'kegiatan' => 'required|max:250',
                 'user_id' => 'required|max:11'

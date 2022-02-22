@@ -65,7 +65,7 @@
                             "id": "int(11)",
                             "judul": "varchar(100)",
                             "tgl": "date(yyyy-mm-dd)",
-                            "cover": "varchar(50)",
+                            "cover": "varchar(255)",
                             "user_id": "int(11)",
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
