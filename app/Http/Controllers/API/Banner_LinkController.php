@@ -42,7 +42,7 @@ class Banner_LinkController extends Controller
 
             $link = new Banner_Link;
             $link->judul = $request->judul;
-            $link->gambar = $request->gambar;
+            $link->gambar = $request->file('gambar')->store('images');
             $link->link = $request->link;
             $link->status = $request->status;
             $link->save();
@@ -73,7 +73,7 @@ class Banner_LinkController extends Controller
 
             $link->update([
                 'judul' => $request->judul,
-                'gambar' => $request->gambar,
+                'gambar' => $request->file('gambar')->store('images'),
                 'link' => $request->link,
                 'status' => $request->status
             ]);

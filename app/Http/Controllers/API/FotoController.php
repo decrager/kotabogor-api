@@ -43,7 +43,7 @@ class FotoController extends Controller
             $foto = new Foto;
             $foto->album_id = $request->album_id;
             $foto->judul = $request->judul;
-            $foto->foto = $request->foto;
+            $foto->foto = $request->file('foto')->store('images');
             $foto->keterangan = $request->keterangan;
             $foto->save();
 
@@ -74,7 +74,7 @@ class FotoController extends Controller
             $foto->update([
                 'album_id' => $request->album_id,
                 'judul' => $request->judul,
-                'foto' => $request->foto,
+                'foto' => $request->file('foto')->store('images'),
                 'keterangan' => $request->keterangan
             ]);
 

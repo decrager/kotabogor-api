@@ -44,7 +44,7 @@ class Banner_AnnounceController extends Controller
 
             $announce = new Banner_Announce;
             $announce->judul = $request->judul;
-            $announce->gambar = $request->gambar;
+            $announce->gambar = $request->file('gambar')->store('images');
             $announce->keterangan = $request->keterangan;
             $announce->status = $request->status;
             $announce->link = $request->link;
@@ -79,7 +79,7 @@ class Banner_AnnounceController extends Controller
 
             $announce->update([
                 'judul' => $request->judul,
-                'gambar' => $request->gambar,
+                'gambar' => $request->file('gambar')->store('images'),
                 'keterangan' => $request->keterangan,
                 'status' => $request->status,
                 'link' => $request->link,

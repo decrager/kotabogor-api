@@ -43,7 +43,7 @@ class DokumenController extends Controller
             $dokumen = new Dokumen;
             $dokumen->nama_doc = $request->nama_doc;
             $dokumen->link = $request->link;
-            $dokumen->file = $request->file;
+            $dokumen->file = $request->file('file')->store('files');
             $dokumen->keterangan = $request->keterangan;
             $dokumen->save();
 
@@ -74,7 +74,7 @@ class DokumenController extends Controller
             $dokumen->update([
                 'nama_doc' => $request->nama_doc,
                 'link' => $request->link,
-                'file' => $request->file,
+                'file' => $request->file('file')->store('files'),
                 'keterangan' => $request->keterangan
             ]);
 

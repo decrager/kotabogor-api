@@ -52,9 +52,9 @@ class DataOPDController extends Controller
 
             $opd = new Data_opd;
             $opd->nama_opd = $request->nama_opd;
-            $opd->foto_kantor = $request->foto_kantor;
+            $opd->foto_kantor = $request->file('foto_kantor')->store('images');
             $opd->nama_kepalaopd = $request->nama_kepalaopd;
-            $opd->foto_kepalaopd = $request->foto_kepalaopd;
+            $opd->foto_kepalaopd = $request->file('foto_kepalaopd')->store('images');
             $opd->alamat = $request->alamat;
             $opd->telp = $request->telp;
             $opd->email = $request->email;
@@ -103,9 +103,9 @@ class DataOPDController extends Controller
 
             $opd->update([
                 'nama_opd' => $request->nama_opd,
-                'foto_kantor' => $request->foto_kantor,
+                'foto_kantor' => $request->file('foto_kantor')->store('images'),
                 'nama_kepalaopd' => $request->nama_kepalaopd,
-                'foto_kepalaopd' => $request->foto_kepalaopd,
+                'foto_kepalaopd' => $request->file('foto_kepalaopd')->store('images'),
                 'alamat' => $request->alamat,
                 'telp' => $request->telp,
                 'email' => $request->email,

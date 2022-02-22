@@ -43,7 +43,7 @@ class VideoController extends Controller
 
             $video = new Video;
             $video->judul = $request->judul;
-            $video->cover = $request->cover;
+            $video->cover = $request->file('cover')->store('images');
             $video->link = $request->link;
             $video->keterangan = $request->keterangan;
             $video->user_id = $request->user_id;
@@ -76,7 +76,7 @@ class VideoController extends Controller
 
             $video->update([
                 'judul' => $request->judul,
-                'cover' => $request->cover,
+                'cover' => $request->file('cover')->store('images'),
                 'link' => $request->link,
                 'keterangan' => $request->keterangan,
                 'user_id' => $request->user_id

@@ -43,7 +43,7 @@ class AlbumController extends Controller
             $album = new Album;
             $album->judul = $request->judul;
             $album->tgl = $request->tgl;
-            $album->cover = $request->cover;
+            $album->cover = $request->file('cover')->store('images');
             $album->user_id = $request->user_id;
             $album->save();
 
@@ -74,7 +74,7 @@ class AlbumController extends Controller
             $album->update([
                 'judul' => $request->judul,
                 'tgl' => $request->tgl,
-                'cover' => $request->cover,
+                'cover' => $request->file('cover')->store('images'),
                 'user_id' => $request->user_id
             ]);
 

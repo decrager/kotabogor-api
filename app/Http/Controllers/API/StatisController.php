@@ -47,7 +47,7 @@ class StatisController extends Controller
             $statis->judul = $request->judul;
             $statis->kategori_id = $request->kategori_id;
             $statis->isi = $request->isi;
-            $statis->file = $request->file;
+            $statis->file = $request->file('file')->store('images');
             $statis->tgl = $request->tgl;
             $statis->status = $request->status;
             $statis->user_id = $request->user_id;
@@ -84,7 +84,7 @@ class StatisController extends Controller
                 'judul' => $request->judul,
                 'kategori_id' => $request->kategori_id,
                 'isi' => $request->isi,
-                'file' => $request->file,
+                'file' => $request->file('file')->store('images'),
                 'tgl' => $request->tgl,
                 'status' => $request->status,
                 'user_id' => $request->user_id

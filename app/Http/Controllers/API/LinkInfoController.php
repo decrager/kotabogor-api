@@ -44,7 +44,7 @@ class LinkInfoController extends Controller
             $info->judul = $request->judul;
             $info->keterangan = $request->keterangan;
             $info->link = $request->link;
-            $info->gambar = $request->gambar;
+            $info->gambar = $request->file('gambar')->store('images');
             $info->save();
 
             return response()->json([
@@ -75,7 +75,7 @@ class LinkInfoController extends Controller
                 'judul' => $request->judul,
                 'keterangan' => $request->keterangan,
                 'link' => $request->link,
-                'gambar' => $request->gambar
+                'gambar' => $request->file('gambar')->store('images')
             ]);
 
             return response()->json([

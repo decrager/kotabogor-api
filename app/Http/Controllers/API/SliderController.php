@@ -43,7 +43,7 @@ class SliderController extends Controller
             $slider = new Slider;
             $slider->judul = $request->judul;
             $slider->keterangan = $request->keterangan;
-            $slider->gambar = $request->gambar;
+            $slider->gambar = $request->file('gambar')->store('images');
             $slider->status = $request->status;
             $slider->save();
 
@@ -74,7 +74,7 @@ class SliderController extends Controller
             $slider->update([
                 'judul' => $request->judul,
                 'keterangan' => $request->keterangan,
-                'gambar' => $request->gambar,
+                'gambar' => $request->file('gambar')->store('images'),
                 'status' => $request->status
             ]);
 
