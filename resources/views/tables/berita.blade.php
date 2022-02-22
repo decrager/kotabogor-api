@@ -66,7 +66,7 @@
                             "judul": "varchar(100)",
                             "kategori_id": "int(11)",
                             "isi": "text",
-                            "gambar": "varchar(50)",
+                            "gambar": "varchar(255)",
                             "tgl": "date(yyyy-mm-dd)",
                             "user_id": "int(11)",
                             "created_at": "Timestamp",

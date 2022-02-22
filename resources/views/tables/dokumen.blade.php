@@ -65,7 +65,7 @@
                             "id": "int(11)",
                             "nama_doc": "varchar(50)",
                             "link": "varchar(100)",
-                            "file": "varchar(50)",
+                            "file": "varchar(255)",
                             "keterangan": "varchar(200)",
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"

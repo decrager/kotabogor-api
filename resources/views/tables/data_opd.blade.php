@@ -64,9 +64,9 @@
                         {
                             "id": "int(3)",
                             "nama_opd": "varchar(50)",
-                            "foto_kantor": "varchar(50)",
+                            "foto_kantor": "varchar(255)",
                             "nama_kepalaopd": "varchar(50)",
-                            "foto_kepalaopd": "varchar(50)",
+                            "foto_kepalaopd": "varchar(255)",
                             "alamat": "varchar(100)",
                             "telp": "varchar(15)",
                             "email": "varchar(50)",

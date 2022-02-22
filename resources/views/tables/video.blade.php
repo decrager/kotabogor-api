@@ -64,7 +64,7 @@
                         {
                             "id": "int(11)",
                             "judul": "varchar(80)",
-                            "cover": "varchar(50)",
+                            "cover": "varchar(255)",
                             "link": "varchar(100)",
                             "keterangan": "varchar(200)",
                             "user_id": "int(11)",

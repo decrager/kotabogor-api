@@ -64,7 +64,7 @@
                         {
                             "id": "int(11)",
                             "judul": "varchar(100)",
-                            "gambar": "varchar(50)",
+                            "gambar": "varchar(255)",
                             "keterangan": "varchar(250)",
                             "status": "enum('0','1')",
                             "link": "varchar(100)",

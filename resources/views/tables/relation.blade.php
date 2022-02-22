@@ -72,7 +72,7 @@
                                         "telp": "varchar(15)",
                                         "username": "varchar(25)",
                                         "role": "varchar(25)",
-                                        "foto": "varchar(50)"
+                                        "foto": "varchar(255)"
                                     }
                                 }
                             </code>
@@ -125,7 +125,7 @@
                                     "id": "int(11)",
                                     "judul": "varchar(100)",
                                     "tgl": "date(yyyy-mm-dd)",
-                                    "cover": "varchar(50)",
+                                    "cover": "varchar(255)",
                                     "user_id": "int(11)",
                                     "pengguna": {
                                         "id": "int(3)",
@@ -134,7 +134,7 @@
                                         "telp": "varchar(15)",
                                         "username": "varchar(25)",
                                         "role": "varchar(25)",
-                                        "foto": "varchar(50)"
+                                        "foto": "varchar(255)"
                                     }
                                 }
                             </code>
@@ -185,7 +185,7 @@
                                 {
                                     "id": "int(11)",
                                     "judul": "varchar(100)",
-                                    "gambar": "varchar(50)",
+                                    "gambar": "varchar(255)",
                                     "keterangan": "varchar(250)",
                                     "status": "enum('0','1')",
                                     "link": "varchar(100)",
@@ -197,7 +197,7 @@
                                         "telp": "varchar(15)",
                                         "username": "varchar(25)",
                                         "role": "varchar(25)",
-                                        "foto": "varchar(50)"
+                                        "foto": "varchar(255)"
                                     }
                                 }
                             </code>
@@ -250,7 +250,7 @@
                                     "judul": "varchar(100)",
                                     "kategori_id": "int(11)",
                                     "isi": "text",
-                                    "gambar": "varchar(50)",
+                                    "gambar": "varchar(255)",
                                     "tgl": "date(yyyy-mm-dd)",
                                     "user_id": "int(11)",
                                     "kat_berita": {
@@ -265,7 +265,7 @@
                                         "telp": "varchar(15)",
                                         "username": "varchar(25)",
                                         "role": "varchar(25)",
-                                        "foto": "varchar(50)"
+                                        "foto": "varchar(255)"
                                     }
                                 }
                             </code>
@@ -316,7 +316,7 @@
                                     "album_id": "int(11)",
                                     "isi": "text",
                                     "judul": "varchar(100)",
-                                    "foto": "varchar(50)",
+                                    "foto": "varchar(255)",
                                     "keterangan": "varchar(100)",
                                     "album": {
                                         "id": "int(11)",
@@ -374,7 +374,7 @@
                                     "judul": "varchar(100)",
                                     "kategori_id": "int(11)",
                                     "isi": "text",
-                                    "gambar": "varchar(50)",
+                                    "gambar": "varchar(255)",
                                     "tgl": "date(yyyy-mm-dd)",
                                     "user_id": "int(11)",
                                     "komentar": {
@@ -435,7 +435,7 @@
                                     "judul": "varchar(100)",
                                     "kategori_id": "int(11)",
                                     "isi": "text",
-                                    "file": "varchar(50)",
+                                    "file": "varchar(255)",
                                     "tgl": "date(yyyy-mm-dd)",
                                     "status": "enum('0','1')",
                                     "user_id": "int(11)",
@@ -451,7 +451,7 @@
                                         "telp": "varchar(15)",
                                         "username": "varchar(25)",
                                         "role": "varchar(25)",
-                                        "foto": "varchar(50)"
+                                        "foto": "varchar(255)"
                                     }
                                 }
                             </code>
@@ -502,7 +502,7 @@
                                 {
                                     "id": "int(11)",
                                     "judul": "varchar(100)",
-                                    "cover": "varchar(50)",
+                                    "cover": "varchar(255)",
                                     "link": "varchar(100)",
                                     "keterangan": "varchar(200)",
                                     "user_id": "int(11)",
@@ -513,7 +513,7 @@
                                         "telp": "varchar(15)",
                                         "username": "varchar(25)",
                                         "role": "varchar(25)",
-                                        "foto": "varchar(50)"
+                                        "foto": "varchar(255)"
                                     }
                                 }
                             </code>
