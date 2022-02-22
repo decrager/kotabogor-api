@@ -1,10 +1,10 @@
 <div class="row">
-    <a class="d-inline-block bg-white btn py-2" data-bs-toggle="collapse" data-bs-target="#KatBeritaCollapse"
+    <a class="d-inline-block bg-white btn py-2" data-bs-toggle="collapse" data-bs-target="#KatStatisCollapse"
         aria-expanded="false">
         <div class="row">
             <div class="col-6">
                 <div class="text-start" style="font-size: 20px">
-                    Tabel KatBerita
+                    Tabel KatStatis
                 </div>
             </div>
             <div class="col-6">
@@ -15,45 +15,45 @@
         </div>
     </a>
 
-    <div class="collapse" id="KatBeritaCollapse">
+    <div class="collapse" id="KatStatisCollapse">
         <div class="card card-body mt-2"> 
             <table class="mb-2">
                 <tbody class="mb-2">
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-success pe-none">GET</button></td>
-                        <td id="KatBerita1">https://pemkot.kotabogor-api.my.id/KatBerita</td>
+                        <td id="KatStatis1">https://pemkot.kotabogor-api.my.id/KatStatis</td>
                         <td><button class="btn btn-success float-end"
-                                onclick="copy('KatBerita1')">Copy</button></td>
+                                onclick="copy('KatStatis1')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-success pe-none">GET</button></td>
-                        <td id="KatBerita2">https://pemkot.kotabogor-api.my.id/KatBerita/{id}</td>
+                        <td id="KatStatis2">https://pemkot.kotabogor-api.my.id/KatStatis/{id}</td>
                         <td><button class="btn btn-success float-end"
-                                onclick="copy('KatBerita2')">Copy</button></td>
+                                onclick="copy('KatStatis2')">Copy</button></td>
                     </tr>
                     @if (Auth::user()->role=='admin')
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-warning pe-none">POST</button></td>
-                        <td id="KatBerita3">https://pemkot.kotabogor-api.my.id/KatBeritaCrt</td>
+                        <td id="KatStatis3">https://pemkot.kotabogor-api.my.id/KatStatisCrt</td>
                         <td><button class="btn btn-success float-end"
-                                onclick="copy('KatBerita3')">Copy</button></td>
+                                onclick="copy('KatStatis3')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-primary pe-none">PUT</button></td>
-                        <td id="KatBerita4">https://pemkot.kotabogor-api.my.id/KatBeritaUpd/{id}</td>
+                        <td id="KatStatis4">https://pemkot.kotabogor-api.my.id/KatStatisUpd/{id}</td>
                         <td><button class="btn btn-success float-end"
-                                onclick="copy('KatBerita4')">Copy</button></td>
+                                onclick="copy('KatStatis4')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-danger pe-none">DELETE</button></td>
-                        <td id="KatBerita5">https://pemkot.kotabogor-api.my.id/KatBeritaDest/{id}</td>
+                        <td id="KatStatis5">https://pemkot.kotabogor-api.my.id/KatStatisDest/{id}</td>
                         <td><button class="btn btn-success float-end"
-                                onclick="copy('KatBerita5')">Copy</button></td>
+                                onclick="copy('KatStatis5')">Copy</button></td>
                     </tr>
                     @endif
                 </tbody>
