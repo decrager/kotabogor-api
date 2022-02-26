@@ -9,6 +9,7 @@ use App\Http\Controllers\API\Banner_LinkController;
 use App\Http\Controllers\API\BeritaController;
 use App\Http\Controllers\API\DataOPDController;
 use App\Http\Controllers\API\DokumenController;
+use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\FotoController;
 use App\Http\Controllers\API\KatBeritaController;
 use App\Http\Controllers\API\KatStatisController;
@@ -95,6 +96,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/DokumenUpd/{id}', [DokumenController::class, 'update']);
     Route::delete('/DokumenDest/{id}', [DokumenController::class, 'destroy']);
 
+    // Table Faq
+    Route::get('/Faq', [FaqController::class, 'view']);
+    Route::get('/Faq/{id}', [FaqController::class, 'viewById']);
+    Route::post('/FaqCrt', [FaqController::class, 'create']);
+    Route::put('/FaqUpd/{id}', [FaqController::class, 'update']);
+    Route::delete('/FaqDest/{id}', [FaqController::class, 'destroy']);
+    
     // Table Foto
     Route::get('/Foto', [FotoController::class, 'view']);
     Route::get('/Foto/{id}', [FotoController::class, 'viewById']);

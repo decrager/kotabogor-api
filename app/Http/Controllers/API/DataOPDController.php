@@ -36,34 +36,24 @@ class DataOPDController extends Controller
             $request->validate([
                 'nama_opd' => 'required|max:50',
                 'foto_kantor' => 'required|mimes:jpeg,jpg,png|max:5000',
-                'nama_kepalaopd' => 'required|max:50',
-                'foto_kepalaopd' => 'required|mimes:jpeg,jpg,png|max:5000',
                 'alamat' => 'required|max:100',
                 'telp' => 'required|max:15',
                 'email' => 'required|max:50',
                 'website' => 'required|max:50',
-                'twitter_alamat' => 'nullable|max:50',
                 'twitter_link' => 'nullable|max:100',
-                'ig_alamat' => 'nullable|max:50',
                 'ig_link' => 'nullable|max:100',
-                'facebook_alamat' => 'nullable|max:50',
                 'facebook_link' => 'nullable|max:100'
             ]);
 
             $opd = new Data_opd;
             $opd->nama_opd = $request->nama_opd;
             $opd->foto_kantor = $request->file('foto_kantor')->store('images');
-            $opd->nama_kepalaopd = $request->nama_kepalaopd;
-            $opd->foto_kepalaopd = $request->file('foto_kepalaopd')->store('images');
             $opd->alamat = $request->alamat;
             $opd->telp = $request->telp;
             $opd->email = $request->email;
             $opd->website = $request->website;
-            $opd->twitter_alamat = $request->twitter_alamat;
             $opd->twitter_link = $request->twitter_link;
-            $opd->ig_alamat = $request->ig_alamat;
             $opd->ig_link = $request->ig_link;
-            $opd->facebook_alamat = $request->facebook_alamat;
             $opd->facebook_link = $request->facebook_link;
             $opd->save();
 
@@ -87,34 +77,24 @@ class DataOPDController extends Controller
             $request->validate([
                 'nama_opd' => 'required|max:50',
                 'foto_kantor' => 'required|mimes:jpeg,jpg,png|max:5000',
-                'nama_kepalaopd' => 'required|max:50',
-                'foto_kepalaopd' => 'required|mimes:jpeg,jpg,png|max:5000',
                 'alamat' => 'required|max:100',
                 'telp' => 'required|max:15',
                 'email' => 'required|max:50',
                 'website' => 'required|max:50',
-                'twitter_alamat' => 'nullable|max:50',
                 'twitter_link' => 'nullable|max:100',
-                'ig_alamat' => 'nullable|max:50',
                 'ig_link' => 'nullable|max:100',
-                'facebook_alamat' => 'nullable|max:50',
                 'facebook_link' => 'nullable|max:100'
             ]);
 
             $opd->update([
                 'nama_opd' => $request->nama_opd,
                 'foto_kantor' => $request->file('foto_kantor')->store('images'),
-                'nama_kepalaopd' => $request->nama_kepalaopd,
-                'foto_kepalaopd' => $request->file('foto_kepalaopd')->store('images'),
                 'alamat' => $request->alamat,
                 'telp' => $request->telp,
                 'email' => $request->email,
                 'website' => $request->website,
-                'twitter_alamat' => $request->twitter_alamat,
                 'twitter_link' => $request->twitter_link,
-                'ig_alamat' => $request->ig_alamat,
                 'ig_link' => $request->ig_link,
-                'facebook_alamat' => $request->facebook_alamat,
                 'facebook_link' => $request->facebook_link,
             ]);
 

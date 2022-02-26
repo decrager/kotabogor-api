@@ -1,10 +1,10 @@
 <div class="row">
-    <a class="d-inline-block bg-white btn py-2" data-bs-toggle="collapse" data-bs-target="#DataOPDCollapse"
+    <a class="d-inline-block bg-white btn py-2" data-bs-toggle="collapse" data-bs-target="#FaqCollapse"
         aria-expanded="false">
         <div class="row">
             <div class="col-6">
                 <div class="text-start" style="font-size: 20px">
-                    Tabel Data_OPD
+                    Tabel Faq
                 </div>
             </div>
             <div class="col-6">
@@ -15,45 +15,45 @@
         </div>
     </a>
 
-    <div class="collapse" id="DataOPDCollapse">
+    <div class="collapse" id="FaqCollapse">
         <div class="card card-body mt-2"> 
             <table class="mb-2">
                 <tbody class="mb-2">
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-success pe-none">GET</button></td>
-                        <td id="DataOPD1">https://pemkot.kotabogor-api.my.id/DataOPD</td>
+                        <td id="Faq1">https://pemkot.kotabogor-api.my.id/Faq</td>
                         <td><button class="btn btn-success float-end"
-                                onclick="copy('DataOPD1')">Copy</button></td>
+                                onclick="copy('Faq1')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-success pe-none">GET</button></td>
-                        <td id="DataOPD2">https://pemkot.kotabogor-api.my.id/DataOPD/{id}</td>
+                        <td id="Faq2">https://pemkot.kotabogor-api.my.id/Faq/{id}</td>
                         <td><button class="btn btn-success float-end"
-                                onclick="copy('DataOPD2')">Copy</button></td>
+                                onclick="copy('Faq2')">Copy</button></td>
                     </tr>
                     @if (Auth::user()->role=='admin')
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-warning pe-none">POST</button></td>
-                        <td id="DataOPD3">https://pemkot.kotabogor-api.my.id/DataOPDCrt</td>
+                        <td id="Faq3">https://pemkot.kotabogor-api.my.id/FaqCrt</td>
                         <td><button class="btn btn-success float-end"
-                                onclick="copy('DataOPD3')">Copy</button></td>
+                                onclick="copy('Faq3')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
-                                class="btn btn-outline-warning pe-none">POST</button></td>
-                        <td id="DataOPD4">https://pemkot.kotabogor-api.my.id/DataOPDUpd/{id}</td>
+                                class="btn btn-outline-primary pe-none">PUT</button></td>
+                        <td id="Faq4">https://pemkot.kotabogor-api.my.id/FaqUpd/{id}</td>
                         <td><button class="btn btn-success float-end"
-                                onclick="copy('DataOPD4')">Copy</button></td>
+                                onclick="copy('Faq4')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-danger pe-none">DELETE</button></td>
-                        <td id="DataOPD5">https://pemkot.kotabogor-api.my.id/DataOPDDest/{id}</td>
+                        <td id="Faq5">https://pemkot.kotabogor-api.my.id/FaqDest/{id}</td>
                         <td><button class="btn btn-success float-end"
-                                onclick="copy('DataOPD5')">Copy</button></td>
+                                onclick="copy('Faq5')">Copy</button></td>
                     </tr>
                     @endif
                 </tbody>
@@ -62,16 +62,9 @@
                 <pre>
                     <code class="language-json text-left pt-3">
                         {
-                            "id": "int(3)",
-                            "nama_opd": "varchar(50)",
-                            "foto_kantor": "varchar(255)",
-                            "alamat": "varchar(100)",
-                            "telp": "varchar(15)",
-                            "email": "varchar(50)",
-                            "website": "varchar(50)",
-                            "twitter_link": "varchar(100)",
-                            "ig_link": "varchar(100)",
-                            "facebook_link": "varchar(100)",
+                            "id": "int(11)",
+                            "pertanyaan": "text",
+                            "jawaban": "text",
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }

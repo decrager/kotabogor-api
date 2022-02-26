@@ -17,6 +17,7 @@
                     @include('tables.berita')
                     @include('tables.data_opd')
                     @include('tables.dokumen')
+                    @include('tables.faq')
                     @include('tables.foto')
                     @include('tables.katberita')
                     @include('tables.katstatis')
