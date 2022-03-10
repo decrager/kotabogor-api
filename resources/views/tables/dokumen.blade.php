@@ -70,6 +70,7 @@
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }
+                        "Path to file": "https://api.kotabogor.my.id/storage/files/dokumen/{file_name}"
                     </code>
                 </pre>
             </div>

@@ -72,6 +72,7 @@
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }
+                        "Path to file": "https://api.kotabogor.my.id/storage/images/banner_announce/{file_name}"
                     </code>
                 </pre>
             </div>
