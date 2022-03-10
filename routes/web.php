@@ -21,6 +21,7 @@ use App\Http\Controllers\API\StatisController;
 use App\Http\Controllers\API\VideoController;
 use App\Http\Controllers\API\VisitorController;
 use App\Http\Controllers\API\RelationController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ use App\Http\Controllers\API\RelationController;
 */
 
 Route::get('/', function () {
+    Artisan::call('storage:link');
     return view('auth.login');
 });
 
