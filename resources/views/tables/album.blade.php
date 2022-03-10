@@ -22,14 +22,14 @@
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-success pe-none">GET</button></td>
-                        <td id="Album1">https://pemkot.kotabogor-api.my.id/Album</td>
+                        <td id="Album1">https://api.kotabogor.my.id/Album</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Album1')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-success pe-none">GET</button></td>
-                        <td id="Album2">https://pemkot.kotabogor-api.my.id/Album/{id}</td>
+                        <td id="Album2">https://api.kotabogor.my.id/Album/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Album2')">Copy</button></td>
                     </tr>
@@ -37,21 +37,21 @@
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-warning pe-none">POST</button></td>
-                        <td id="Album3">https://pemkot.kotabogor-api.my.id/AlbumCrt</td>
+                        <td id="Album3">https://api.kotabogor.my.id/AlbumCrt</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Album3')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-warning pe-none">POST</button></td>
-                        <td id="Album4">https://pemkot.kotabogor-api.my.id/AlbumUpd/{id}</td>
+                        <td id="Album4">https://api.kotabogor.my.id/AlbumUpd/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Album4')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-danger pe-none">DELETE</button></td>
-                        <td id="Album5">https://pemkot.kotabogor-api.my.id/AlbumDest/{id}</td>
+                        <td id="Album5">https://api.kotabogor.my.id/AlbumDest/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Album5')">Copy</button></td>
                     </tr>

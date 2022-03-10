@@ -22,14 +22,14 @@
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-success pe-none">GET</button></td>
-                        <td id="Dokumen1">https://pemkot.kotabogor-api.my.id/Dokumen</td>
+                        <td id="Dokumen1">https://api.kotabogor.my.id/Dokumen</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Dokumen1')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-success pe-none">GET</button></td>
-                        <td id="Dokumen2">https://pemkot.kotabogor-api.my.id/Dokumen/{id}</td>
+                        <td id="Dokumen2">https://api.kotabogor.my.id/Dokumen/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Dokumen2')">Copy</button></td>
                     </tr>
@@ -37,21 +37,21 @@
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-warning pe-none">POST</button></td>
-                        <td id="Dokumen3">https://pemkot.kotabogor-api.my.id/DokumenCrt</td>
+                        <td id="Dokumen3">https://api.kotabogor.my.id/DokumenCrt</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Dokumen3')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-warning pe-none">POST</button></td>
-                        <td id="Dokumen4">https://pemkot.kotabogor-api.my.id/DokumenUpd/{id}</td>
+                        <td id="Dokumen4">https://api.kotabogor.my.id/DokumenUpd/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Dokumen4')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-danger pe-none">DELETE</button></td>
-                        <td id="Dokumen5">https://pemkot.kotabogor-api.my.id/DokumenDest/{id}</td>
+                        <td id="Dokumen5">https://api.kotabogor.my.id/DokumenDest/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Dokumen5')">Copy</button></td>
                     </tr>

@@ -41,14 +41,14 @@
                             <tr>
                                 <td class="col-1" scope="row"><button
                                         class="btn btn-outline-success pe-none">GET</button></td>
-                                <td id="agenda01">https://pemkot.kotabogor-api.my.id/Relation/Agenda</td>
+                                <td id="agenda01">https://api.kotabogor.my.id/Relation/Agenda</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('agenda01')">Copy</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-1" scope="row"><button
                                         class="btn btn-outline-success pe-none">GET</button></td>
-                                <td id="agenda02">https://pemkot.kotabogor-api.my.id/Relation/Agenda/{id}</td>
+                                <td id="agenda02">https://api.kotabogor.my.id/Relation/Agenda/{id}</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('agenda02')">Copy</button>
                                 </td>
                             </tr>
@@ -105,14 +105,14 @@
                             <tr>
                                 <td class="col-1" scope="row"><button
                                         class="btn btn-outline-success pe-none">GET</button></td>
-                                <td id="agenda01">https://pemkot.kotabogor-api.my.id/Relation/Album</td>
+                                <td id="agenda01">https://api.kotabogor.my.id/Relation/Album</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('agenda01')">Copy</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-1" scope="row"><button
                                         class="btn btn-outline-success pe-none">GET</button></td>
-                                <td id="agenda02">https://pemkot.kotabogor-api.my.id/Relation/Album/{id}</td>
+                                <td id="agenda02">https://api.kotabogor.my.id/Relation/Album/{id}</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('agenda02')">Copy</button>
                                 </td>
                             </tr>
@@ -166,14 +166,14 @@
                             <tr>
                                 <td class="col-1" scope="row"><button
                                         class="btn btn-outline-success pe-none">GET</button></td>
-                                <td id="agenda01">https://pemkot.kotabogor-api.my.id/Relation/Banner_Announce</td>
+                                <td id="agenda01">https://api.kotabogor.my.id/Relation/Banner_Announce</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('agenda01')">Copy</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-1" scope="row"><button
                                         class="btn btn-outline-success pe-none">GET</button></td>
-                                <td id="agenda02">https://pemkot.kotabogor-api.my.id/Relation/Banner_Announce/{id}</td>
+                                <td id="agenda02">https://api.kotabogor.my.id/Relation/Banner_Announce/{id}</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('agenda02')">Copy</button>
                                 </td>
                             </tr>
@@ -229,14 +229,14 @@
                             <tr>
                                 <td class="col-1" scope="row"><button
                                         class="btn btn-outline-success pe-none">GET</button></td>
-                                <td id="agenda01">https://pemkot.kotabogor-api.my.id/Relation/Berita</td>
+                                <td id="agenda01">https://api.kotabogor.my.id/Relation/Berita</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('agenda01')">Copy</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-1" scope="row"><button
                                         class="btn btn-outline-success pe-none">GET</button></td>
-                                <td id="agenda02">https://pemkot.kotabogor-api.my.id/Relation/Berita/{id}</td>
+                                <td id="agenda02">https://api.kotabogor.my.id/Relation/Berita/{id}</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('agenda02')">Copy</button>
                                 </td>
                             </tr>
@@ -296,13 +296,13 @@
                         <tbody class="mb-2">
                             <tr>
                                 <td class="col-1" scope="row"><button class="btn btn-outline-success pe-none">GET</button></td>
-                                <td id="agenda01">https://pemkot.kotabogor-api.my.id/Relation/Foto</td>
+                                <td id="agenda01">https://api.kotabogor.my.id/Relation/Foto</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('agenda01')">Copy</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-1" scope="row"><button class="btn btn-outline-success pe-none">GET</button></td>
-                                <td id="agenda02">https://pemkot.kotabogor-api.my.id/Relation/Foto/{id}</td>
+                                <td id="agenda02">https://api.kotabogor.my.id/Relation/Foto/{id}</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('agenda02')">Copy</button>
                                 </td>
                             </tr>
@@ -354,13 +354,13 @@
                         <tbody class="mb-2">
                             <tr>
                                 <td class="col-1" scope="row"><button class="btn btn-outline-success pe-none">GET</button></td>
-                                <td id="agenda01">https://pemkot.kotabogor-api.my.id/Relation/Komentar</td>
+                                <td id="agenda01">https://api.kotabogor.my.id/Relation/Komentar</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('agenda01')">Copy</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-1" scope="row"><button class="btn btn-outline-success pe-none">GET</button></td>
-                                <td id="agenda02">https://pemkot.kotabogor-api.my.id/Relation/Komentar/{id}</td>
+                                <td id="agenda02">https://api.kotabogor.my.id/Relation/Komentar/{id}</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('agenda02')">Copy</button>
                                 </td>
                             </tr>
@@ -414,14 +414,14 @@
                             <tr>
                                 <td class="col-1" scope="row"><button class="btn btn-outline-success pe-none">GET</button>
                                 </td>
-                                <td id="agenda01">https://pemkot.kotabogor-api.my.id/Relation/Statis</td>
+                                <td id="agenda01">https://api.kotabogor.my.id/Relation/Statis</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('agenda01')">Copy</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-1" scope="row"><button class="btn btn-outline-success pe-none">GET</button>
                                 </td>
-                                <td id="agenda02">https://pemkot.kotabogor-api.my.id/Relation/Statis/{id}</td>
+                                <td id="agenda02">https://api.kotabogor.my.id/Relation/Statis/{id}</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('agenda02')">Copy</button>
                                 </td>
                             </tr>
@@ -483,14 +483,14 @@
                             <tr>
                                 <td class="col-1" scope="row"><button class="btn btn-outline-success pe-none">GET</button>
                                 </td>
-                                <td id="agenda01">https://pemkot.kotabogor-api.my.id/Relation/Video</td>
+                                <td id="agenda01">https://api.kotabogor.my.id/Relation/Video</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('agenda01')">Copy</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-1" scope="row"><button class="btn btn-outline-success pe-none">GET</button>
                                 </td>
-                                <td id="agenda02">https://pemkot.kotabogor-api.my.id/Relation/Video/{id}</td>
+                                <td id="agenda02">https://api.kotabogor.my.id/Relation/Video/{id}</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('agenda02')">Copy</button>
                                 </td>
                             </tr>

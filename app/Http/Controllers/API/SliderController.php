@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Slider;
+use Illuminate\Support\Facades\Storage;
 
 class SliderController extends Controller
 {
@@ -36,14 +37,18 @@ class SliderController extends Controller
             $request->validate([
                 'judul' => 'required|max:50',
                 'keterangan' => 'required|max:100',
-                'gambar' => 'required|mimes:jpeg,jpg,png|max:5000',
+                'gambar' => 'required|mimes:jpeg,jpg,png|max:3072',
                 'status' => 'required|in:0,1'
             ]);
+
+            $file = $request->file('gambar');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('images/slider', $fileName);
 
             $slider = new Slider;
             $slider->judul = $request->judul;
             $slider->keterangan = $request->keterangan;
-            $slider->gambar = $request->file('gambar')->store('images');
+            $slider->gambar = $request->file('gambar')->getClientOriginalName();
             $slider->status = $request->status;
             $slider->save();
 
@@ -67,14 +72,23 @@ class SliderController extends Controller
             $request->validate([
                 'judul' => 'required|max:50',
                 'keterangan' => 'required|max:100',
-                'gambar' => 'required|mimes:jpeg,jpg,png|max:5000',
+                'gambar' => 'required|mimes:jpeg,jpg,png|max:3072',
                 'status' => 'required|in:0,1'
             ]);
+
+            $file = $request->file('gambar');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('images/slider', $fileName);
+
+            $destination = 'images/slider/' . $slider->gambar;
+            if ($destination) {
+                Storage::delete($destination);
+            }
 
             $slider->update([
                 'judul' => $request->judul,
                 'keterangan' => $request->keterangan,
-                'gambar' => $request->file('gambar')->store('images'),
+                'gambar' => $request->file('gambar')->getClientOriginalName(),
                 'status' => $request->status
             ]);
 
@@ -92,9 +106,14 @@ class SliderController extends Controller
     public function destroy($id)
     {
         $user = Auth::user();
+        $slider = Slider::find($id);
+        $destination = 'images/slider/' . $slider->gambar;
 
         if ($user->role == 'admin') {
-            $slider = Slider::find($id)->delete();
+            if ($destination) {
+                Storage::delete($destination);
+            }
+            Slider::find($id)->delete();
             return response()->json([
                 'message' => 'Data slider Deleted Successfully!'
             ], Response::HTTP_OK);

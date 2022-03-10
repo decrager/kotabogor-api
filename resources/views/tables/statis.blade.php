@@ -22,14 +22,14 @@
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-success pe-none">GET</button></td>
-                        <td id="Statis1">https://pemkot.kotabogor-api.my.id/Statis</td>
+                        <td id="Statis1">https://api.kotabogor.my.id/Statis</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Statis1')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-success pe-none">GET</button></td>
-                        <td id="Statis2">https://pemkot.kotabogor-api.my.id/Statis/{id}</td>
+                        <td id="Statis2">https://api.kotabogor.my.id/Statis/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Statis2')">Copy</button></td>
                     </tr>
@@ -37,21 +37,21 @@
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-warning pe-none">POST</button></td>
-                        <td id="Statis3">https://pemkot.kotabogor-api.my.id/StatisCrt</td>
+                        <td id="Statis3">https://api.kotabogor.my.id/StatisCrt</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Statis3')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-warning pe-none">POST</button></td>
-                        <td id="Statis4">https://pemkot.kotabogor-api.my.id/StatisUpd/{id}</td>
+                        <td id="Statis4">https://api.kotabogor.my.id/StatisUpd/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Statis4')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-danger pe-none">DELETE</button></td>
-                        <td id="Statis5">https://pemkot.kotabogor-api.my.id/StatisDest/{id}</td>
+                        <td id="Statis5">https://api.kotabogor.my.id/StatisDest/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Statis5')">Copy</button></td>
                     </tr>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Banner_Announce;
+use Illuminate\Support\Facades\Storage;
 
 class Banner_AnnounceController extends Controller
 {
@@ -35,16 +36,20 @@ class Banner_AnnounceController extends Controller
         if ($user->role == 'admin') {
             $request->validate([
                 'judul' => 'required|max:100',
-                'gambar' => 'required|mimes:jpeg,jpg,png|max:5000',
+                'gambar' => 'required|mimes:jpeg,jpg,png|max:3072',
                 'keterangan' => 'required|max:250',
                 'status' => 'required|in:0,1',
                 'link' => 'required|max:100',
                 'user_id' => 'required|max:11'
             ]);
 
+            $file = $request->file('gambar');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('images/banner_announce', $fileName);
+
             $announce = new Banner_Announce;
             $announce->judul = $request->judul;
-            $announce->gambar = $request->file('gambar')->store('images');
+            $announce->gambar = $request->file('gambar')->getClientOriginalName();
             $announce->keterangan = $request->keterangan;
             $announce->status = $request->status;
             $announce->link = $request->link;
@@ -70,16 +75,25 @@ class Banner_AnnounceController extends Controller
         if ($user->role == 'admin') {
             $request->validate([
                 'judul' => 'required|max:100',
-                'gambar' => 'required|mimes:jpeg,jpg,png|max:5000',
+                'gambar' => 'required|mimes:jpeg,jpg,png|max:3072',
                 'keterangan' => 'required|max:250',
                 'status' => 'required|in:0,1',
                 'link' => 'required|max:100',
                 'user_id' => 'required|max:11'
             ]);
 
+            $file = $request->file('gambar');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('images/banner_announce', $fileName);
+
+            $destination = 'images/banner_announce/' . $announce->gambar;
+            if ($destination) {
+                Storage::delete($destination);
+            }
+
             $announce->update([
                 'judul' => $request->judul,
-                'gambar' => $request->file('gambar')->store('images'),
+                'gambar' => $request->file('gambar')->getClientOriginalName(),
                 'keterangan' => $request->keterangan,
                 'status' => $request->status,
                 'link' => $request->link,
@@ -100,9 +114,14 @@ class Banner_AnnounceController extends Controller
     public function destroy($id)
     {
         $user = Auth::user();
+        $announce = Banner_Announce::find($id);
+        $destination = 'images/banner_announce/' . $announce->gambar;
 
         if ($user->role == 'admin') {
-            $announce = Banner_Announce::find($id)->delete();
+            if ($destination) {
+                Storage::delete($destination);
+            }
+            Banner_Announce::find($id)->delete();
             return response()->json([
                 'message' => 'Data banner_announce Deleted Successfully!'
             ], Response::HTTP_OK);

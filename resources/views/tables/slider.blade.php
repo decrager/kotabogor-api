@@ -22,14 +22,14 @@
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-success pe-none">GET</button></td>
-                        <td id="Slider1">https://pemkot.kotabogor-api.my.id/Slider</td>
+                        <td id="Slider1">https://api.kotabogor.my.id/Slider</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Slider1')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-success pe-none">GET</button></td>
-                        <td id="Slider2">https://pemkot.kotabogor-api.my.id/Slider/{id}</td>
+                        <td id="Slider2">https://api.kotabogor.my.id/Slider/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Slider2')">Copy</button></td>
                     </tr>
@@ -37,21 +37,21 @@
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-warning pe-none">POST</button></td>
-                        <td id="Slider3">https://pemkot.kotabogor-api.my.id/SliderCrt</td>
+                        <td id="Slider3">https://api.kotabogor.my.id/SliderCrt</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Slider3')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-warning pe-none">POST</button></td>
-                        <td id="Slider4">https://pemkot.kotabogor-api.my.id/SliderUpd/{id}</td>
+                        <td id="Slider4">https://api.kotabogor.my.id/SliderUpd/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Slider4')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-danger pe-none">DELETE</button></td>
-                        <td id="Slider5">https://pemkot.kotabogor-api.my.id/SliderDest/{id}</td>
+                        <td id="Slider5">https://api.kotabogor.my.id/SliderDest/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Slider5')">Copy</button></td>
                     </tr>

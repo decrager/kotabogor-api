@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Link_Info;
+use Illuminate\Support\Facades\Storage;
 
 class LinkInfoController extends Controller
 {
@@ -37,14 +38,18 @@ class LinkInfoController extends Controller
                 'judul' => 'required|max:50',
                 'keterangan' => 'required|max:200',
                 'link' => 'required|max:100',
-                'gambar' => 'required|mimes:jpeg,jpg,png|max:5000'
+                'gambar' => 'required|mimes:jpeg,jpg,png|max:3072'
             ]);
+
+            $file = $request->file('gambar');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('images/linkinfo', $fileName);
 
             $info = new Link_Info;
             $info->judul = $request->judul;
             $info->keterangan = $request->keterangan;
             $info->link = $request->link;
-            $info->gambar = $request->file('gambar')->store('images');
+            $info->gambar = $request->file('gambar')->getClientOriginalName();
             $info->save();
 
             return response()->json([
@@ -68,14 +73,23 @@ class LinkInfoController extends Controller
                 'judul' => 'required|max:50',
                 'keterangan' => 'required|max:200',
                 'link' => 'required|max:100',
-                'gambar' => 'required|mimes:jpeg,jpg,png|max:5000'
+                'gambar' => 'required|mimes:jpeg,jpg,png|max:3072'
             ]);
+
+            $file = $request->file('gambar');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('images/linkinfo', $fileName);
+
+            $destination = 'images/linkinfo/' . $info->gambar;
+            if ($destination) {
+                Storage::delete($destination);
+            }
 
             $info->update([
                 'judul' => $request->judul,
                 'keterangan' => $request->keterangan,
                 'link' => $request->link,
-                'gambar' => $request->file('gambar')->store('images')
+                'gambar' => $request->file('gambar')->getClientOriginalName()
             ]);
 
             return response()->json([
@@ -92,9 +106,14 @@ class LinkInfoController extends Controller
     public function destroy($id)
     {
         $user = Auth::user();
+        $info = Link_Info::find($id);
+        $destination = 'images/linkinfo/' . $info->gambar;
 
         if ($user->role == 'admin') {
-            $info = Link_Info::find($id)->delete();
+            if ($destination) {
+                Storage::delete($destination);
+            }
+            Link_Info::find($id)->delete();
             return response()->json([
                 'message' => 'Data link_info Deleted Successfully!'
             ], Response::HTTP_OK);

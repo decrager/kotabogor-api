@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Album;
+use Illuminate\Support\Facades\Storage;
 
 class AlbumController extends Controller
 {
@@ -36,14 +37,18 @@ class AlbumController extends Controller
             $request->validate([
                 'judul' => 'required|max:100',
                 'tgl' => 'required|date',
-                'cover' => 'required|mimes:jpeg,jpg,png|max:5000',
+                'cover' => 'required|mimes:jpeg,jpg,png|max:3072',
                 'user_id' => 'required|max:11'
             ]);
+
+            $file = $request->file('cover');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('images/album', $fileName);
 
             $album = new Album;
             $album->judul = $request->judul;
             $album->tgl = $request->tgl;
-            $album->cover = $request->file('cover')->store('images');
+            $album->cover = $request->file('cover')->getClientOriginalName();
             $album->user_id = $request->user_id;
             $album->save();
 
@@ -67,14 +72,23 @@ class AlbumController extends Controller
             $request->validate([
                 'judul' => 'required|max:100',
                 'tgl' => 'required|date',
-                'cover' => 'required|mimes:jpeg,jpg,png|max:5000',
+                'cover' => 'required|mimes:jpeg,jpg,png|max:3072',
                 'user_id' => 'required|max:11'
             ]);
+
+            $file = $request->file('cover');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('images/album', $fileName);
+
+            $destination = 'images/album/' . $album->cover;
+            if ($destination) {
+                Storage::delete($destination);
+            }
 
             $album->update([
                 'judul' => $request->judul,
                 'tgl' => $request->tgl,
-                'cover' => $request->file('cover')->store('images'),
+                'cover' => $request->file('cover')->getClientOriginalName(),
                 'user_id' => $request->user_id
             ]);
 
@@ -92,9 +106,14 @@ class AlbumController extends Controller
     public function destroy($id)
     {
         $user = Auth::user();
+        $album = Album::find($id);
+        $destination = 'images/album/' . $album->cover;
 
         if ($user->role == 'admin') {
-            $album = Album::find($id)->delete();
+            if ($destination) {
+                Storage::delete($destination);
+            }
+            Album::find($id)->delete();
             return response()->json([
                 'message' => 'Data album Deleted Successfully!'
             ], Response::HTTP_OK);

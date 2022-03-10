@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Data_opd;
+use Illuminate\Support\Facades\Storage;
 
 class DataOPDController extends Controller
 {
@@ -35,7 +36,7 @@ class DataOPDController extends Controller
         if ($user->role == 'admin') {
             $request->validate([
                 'nama_opd' => 'required|max:50',
-                'foto_kantor' => 'required|mimes:jpeg,jpg,png|max:5000',
+                'foto_kantor' => 'required|mimes:jpeg,jpg,png|max:3072',
                 'alamat' => 'required|max:100',
                 'telp' => 'required|max:15',
                 'email' => 'required|max:50',
@@ -45,9 +46,13 @@ class DataOPDController extends Controller
                 'facebook_link' => 'nullable|max:100'
             ]);
 
+            $file = $request->file('foto_kantor');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('images/opd', $fileName);
+
             $opd = new Data_opd;
             $opd->nama_opd = $request->nama_opd;
-            $opd->foto_kantor = $request->file('foto_kantor')->store('images');
+            $opd->foto_kantor = $request->file('foto_kantor')->getClientOriginalName();
             $opd->alamat = $request->alamat;
             $opd->telp = $request->telp;
             $opd->email = $request->email;
@@ -76,7 +81,7 @@ class DataOPDController extends Controller
         if ($user->role == 'admin') {
             $request->validate([
                 'nama_opd' => 'required|max:50',
-                'foto_kantor' => 'required|mimes:jpeg,jpg,png|max:5000',
+                'foto_kantor' => 'required|mimes:jpeg,jpg,png|max:3072',
                 'alamat' => 'required|max:100',
                 'telp' => 'required|max:15',
                 'email' => 'required|max:50',
@@ -86,9 +91,18 @@ class DataOPDController extends Controller
                 'facebook_link' => 'nullable|max:100'
             ]);
 
+            $file = $request->file('foto_kantor');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('images/opd', $fileName);
+
+            $destination = 'images/opd/' . $opd->foto_kantor;
+            if ($destination) {
+                Storage::delete($destination);
+            }
+
             $opd->update([
                 'nama_opd' => $request->nama_opd,
-                'foto_kantor' => $request->file('foto_kantor')->store('images'),
+                'foto_kantor' => $request->file('foto_kantor')->getClientOriginalName(),
                 'alamat' => $request->alamat,
                 'telp' => $request->telp,
                 'email' => $request->email,
@@ -112,9 +126,14 @@ class DataOPDController extends Controller
     public function destroy($id)
     {
         $user = Auth::user();
+        $opd = Data_opd::find($id);
+        $destination = 'images/opd/' . $opd->foto_kantor;
 
         if ($user->role == 'admin') {
-            $opd = Data_opd::find($id)->delete();
+            if ($destination) {
+                Storage::delete($destination);
+            }
+            Data_opd::find($id)->delete();
             return response()->json([
                 'message' => 'Data data_opd Deleted Successfully!'
             ], Response::HTTP_OK);

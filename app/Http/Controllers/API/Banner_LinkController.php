@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Banner_Link;
+use Illuminate\Support\Facades\Storage;
 
 class Banner_LinkController extends Controller
 {
@@ -35,14 +36,18 @@ class Banner_LinkController extends Controller
         if ($user->role == 'admin') {
             $request->validate([
                 'judul' => 'required|max:85',
-                'gambar' => 'required|mimes:jpeg,jpg,png|max:5000',
+                'gambar' => 'required|mimes:jpeg,jpg,png|max:3072',
                 'link' => 'required|max:100',
                 'status' => 'required|in:0.1',
             ]);
 
+            $file = $request->file('gambar');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('images/banner_link', $fileName);
+
             $link = new Banner_Link;
             $link->judul = $request->judul;
-            $link->gambar = $request->file('gambar')->store('images');
+            $link->gambar = $request->file('gambar')->getClientOriginalName();
             $link->link = $request->link;
             $link->status = $request->status;
             $link->save();
@@ -66,14 +71,23 @@ class Banner_LinkController extends Controller
         if ($user->role == 'admin') {
             $request->validate([
                 'judul' => 'required|max:85',
-                'gambar' => 'required|mimes:jpeg,jpg,png|max:5000',
+                'gambar' => 'required|mimes:jpeg,jpg,png|max:3072',
                 'link' => 'required|max:100',
                 'status' => 'required|in:0.1',
             ]);
 
+            $file = $request->file('gambar');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('images/banner_link', $fileName);
+
+            $destination = 'images/banner_link/' . $link->gambar;
+            if ($destination) {
+                Storage::delete($destination);
+            }
+
             $link->update([
                 'judul' => $request->judul,
-                'gambar' => $request->file('gambar')->store('images'),
+                'gambar' => $request->file('gambar')->getClientOriginalName(),
                 'link' => $request->link,
                 'status' => $request->status
             ]);
@@ -92,9 +106,14 @@ class Banner_LinkController extends Controller
     public function destroy($id)
     {
         $user = Auth::user();
+        $link = Banner_Link::find($id);
+        $destination = 'images/banner_link/' . $link->gambar;
 
         if ($user->role == 'admin') {
-            $link = Banner_Link::find($id)->delete();
+            if ($destination) {
+                Storage::delete($destination);
+            }
+            Banner_Link::find($id)->delete();
             return response()->json([
                 'message' => 'Data banner_link Deleted Successfully!'
             ], Response::HTTP_OK);

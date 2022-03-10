@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Foto;
+use Illuminate\Support\Facades\Storage;
 
 class FotoController extends Controller
 {
@@ -36,14 +37,18 @@ class FotoController extends Controller
             $request->validate([
                 'album_id' => 'required|max:11',
                 'judul' => 'required|max:100',
-                'foto' => 'required|mimes:jpeg,jpg,png|max:5000',
+                'foto' => 'required|mimes:jpeg,jpg,png|max:3072',
                 'keterangan' => 'required|max:100'
             ]);
+
+            $file = $request->file('foto');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('images/foto', $fileName);
 
             $foto = new Foto;
             $foto->album_id = $request->album_id;
             $foto->judul = $request->judul;
-            $foto->foto = $request->file('foto')->store('images');
+            $foto->foto = $request->file('foto')->getClientOriginalName();
             $foto->keterangan = $request->keterangan;
             $foto->save();
 
@@ -67,14 +72,23 @@ class FotoController extends Controller
             $request->validate([
                 'album_id' => 'required|max:11',
                 'judul' => 'required|max:100',
-                'foto' => 'required|mimes:jpeg,jpg,png|max:5000',
+                'foto' => 'required|mimes:jpeg,jpg,png|max:3072',
                 'keterangan' => 'required|max:100'
             ]);
+
+            $file = $request->file('foto');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('images/foto', $fileName);
+
+            $destination = 'images/foto/' . $foto->foto;
+            if ($destination) {
+                Storage::delete($destination);
+            }
 
             $foto->update([
                 'album_id' => $request->album_id,
                 'judul' => $request->judul,
-                'foto' => $request->file('foto')->store('images'),
+                'foto' => $request->file('foto')->getClientOriginalName(),
                 'keterangan' => $request->keterangan
             ]);
 
@@ -92,9 +106,14 @@ class FotoController extends Controller
     public function destroy($id)
     {
         $user = Auth::user();
+        $foto = Foto::find($id);
+        $destination = 'images/foto/' . $foto->foto;
 
         if ($user->role == 'admin') {
-            $foto = Foto::find($id)->delete();
+            if ($destination) {
+                Storage::delete($destination);
+            }
+            Foto::find($id)->delete();
             return response()->json([
                 'message' => 'Data photo Deleted Successfully!'
             ], Response::HTTP_OK);

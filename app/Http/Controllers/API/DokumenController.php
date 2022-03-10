@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Dokumen;
+use Illuminate\Support\Facades\Storage;
 
 class DokumenController extends Controller
 {
@@ -36,14 +37,18 @@ class DokumenController extends Controller
             $request->validate([
                 'nama_doc' => 'required|max:50',
                 'link' => 'nullable|max:100',
-                'file' => 'nullable|mimes:pdf|max:5000',
+                'file' => 'nullable|mimes:pdf|max:5120',
                 'keterangan' => 'required|max:200'
             ]);
+
+            $file = $request->file('file');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('files/dokumen', $fileName);
 
             $dokumen = new Dokumen;
             $dokumen->nama_doc = $request->nama_doc;
             $dokumen->link = $request->link;
-            $dokumen->file = $request->file('file')->store('files');
+            $dokumen->file = $request->file('file')->getClientOriginalName();
             $dokumen->keterangan = $request->keterangan;
             $dokumen->save();
 
@@ -67,14 +72,23 @@ class DokumenController extends Controller
             $request->validate([
                 'nama_doc' => 'required|max:50',
                 'link' => 'nullable|max:100',
-                'file' => 'nullable|mimes:pdf|max:5000',
+                'file' => 'nullable|mimes:pdf|max:5120',
                 'keterangan' => 'required|max:200'
             ]);
+
+            $file = $request->file('file');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('files/dokumen', $fileName);
+
+            $destination = 'files/dokumen/' . $dokumen->file;
+            if ($destination) {
+                Storage::delete($destination);
+            }
 
             $dokumen->update([
                 'nama_doc' => $request->nama_doc,
                 'link' => $request->link,
-                'file' => $request->file('file')->store('files'),
+                'file' => $request->file('file')->getClientOriginalName(),
                 'keterangan' => $request->keterangan
             ]);
 
@@ -92,9 +106,14 @@ class DokumenController extends Controller
     public function destroy($id)
     {
         $user = Auth::user();
+        $dokumen = Dokumen::find($id);
+        $destination = 'files/dokumen/' . $dokumen->file;
 
         if ($user->role == 'admin') {
-            $dokumen = Dokumen::find($id)->delete();
+            if ($destination) {
+                Storage::delete($destination);
+            }
+            Dokumen::find($id)->delete();
             return response()->json([
                 'message' => 'Data dokumen Deleted Successfully!'
             ], Response::HTTP_OK);

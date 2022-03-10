@@ -22,14 +22,14 @@
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-success pe-none">GET</button></td>
-                        <td id="Video1">https://pemkot.kotabogor-api.my.id/Video</td>
+                        <td id="Video1">https://api.kotabogor.my.id/Video</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Video1')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-success pe-none">GET</button></td>
-                        <td id="Video2">https://pemkot.kotabogor-api.my.id/Video/{id}</td>
+                        <td id="Video2">https://api.kotabogor.my.id/Video/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Video2')">Copy</button></td>
                     </tr>
@@ -37,21 +37,21 @@
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-warning pe-none">POST</button></td>
-                        <td id="Video3">https://pemkot.kotabogor-api.my.id/VideoCrt</td>
+                        <td id="Video3">https://api.kotabogor.my.id/VideoCrt</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Video3')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-warning pe-none">POST</button></td>
-                        <td id="Video4">https://pemkot.kotabogor-api.my.id/VideoUpd/{id}</td>
+                        <td id="Video4">https://api.kotabogor.my.id/VideoUpd/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Video4')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-danger pe-none">DELETE</button></td>
-                        <td id="Video5">https://pemkot.kotabogor-api.my.id/VideoDest/{id}</td>
+                        <td id="Video5">https://api.kotabogor.my.id/VideoDest/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Video5')">Copy</button></td>
                     </tr>

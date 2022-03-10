@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Berita;
+use Illuminate\Support\Facades\Storage;
 
 class BeritaController extends Controller
 {
@@ -37,16 +38,20 @@ class BeritaController extends Controller
                 'judul' => 'required|max:100',
                 'kategori_id' => 'required|max:11',
                 'isi' => 'required',
-                'gambar' => 'required|mimes:jpeg,jpg,png|max:5000',
+                'gambar' => 'required|mimes:jpeg,jpg,png|max:3072',
                 'tgl' => 'required|date',
                 'user_id' => 'required|max:11'
             ]);
+
+            $file = $request->file('gambar');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('images/berita', $fileName);
 
             $berita = new Berita;
             $berita->judul = $request->judul;
             $berita->kategori_id = $request->kategori_id;
             $berita->isi = $request->isi;
-            $berita->gambar = $request->file('gambar')->store('images');
+            $berita->gambar = $request->file('gambar')->getClientOriginalName();
             $berita->tgl = $request->tgl;
             $berita->user_id = $request->user_id;
             $berita->save();
@@ -72,16 +77,25 @@ class BeritaController extends Controller
                 'judul' => 'required|max:100',
                 'kategori_id' => 'required|max:11',
                 'isi' => 'required',
-                'gambar' => 'required|mimes:jpeg,jpg,png|max:5000',
+                'gambar' => 'required|mimes:jpeg,jpg,png|max:3072',
                 'tgl' => 'required|date',
                 'user_id' => 'required|max:11'
             ]);
+
+            $file = $request->file('gambar');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('images/berita', $fileName);
+
+            $destination = 'images/berita/' . $berita->gambar;
+            if ($destination) {
+                Storage::delete($destination);
+            }
 
             $berita->update([
                 'judul' => $request->judul,
                 'kategori_id' => $request->kategori_id,
                 'isi' => $request->isi,
-                'gambar' => $request->file('gambar')->store('images'),
+                'gambar' => $request->file('gambar')->getClientOriginalName(),
                 'tgl' => $request->tgl,
                 'user_id' => $request->user_id
             ]);
@@ -100,9 +114,14 @@ class BeritaController extends Controller
     public function destroy($id)
     {
         $user = Auth::user();
+        $berita = Berita::find($id);
+        $destination = 'images/berita/' . $berita->gambar;
 
         if ($user->role == 'admin') {
-            $berita = Berita::find($id)->delete();
+            if ($destination) {
+                Storage::delete($destination);
+            }
+            Berita::find($id)->delete();
             return response()->json([
                 'message' => 'Data berita Deleted Successfully!'
             ], Response::HTTP_OK);

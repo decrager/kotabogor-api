@@ -22,14 +22,14 @@
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-success pe-none">GET</button></td>
-                        <td id="Banner_Link1">https://pemkot.kotabogor-api.my.id/Banner_Link</td>
+                        <td id="Banner_Link1">https://api.kotabogor.my.id/Banner_Link</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Banner_Link1')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-success pe-none">GET</button></td>
-                        <td id="Banner_Link2">https://pemkot.kotabogor-api.my.id/Banner_Link/{id}</td>
+                        <td id="Banner_Link2">https://api.kotabogor.my.id/Banner_Link/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Banner_Link2')">Copy</button></td>
                     </tr>
@@ -37,21 +37,21 @@
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-warning pe-none">POST</button></td>
-                        <td id="Banner_Link3">https://pemkot.kotabogor-api.my.id/Banner_LinkCrt</td>
+                        <td id="Banner_Link3">https://api.kotabogor.my.id/Banner_LinkCrt</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Banner_Link3')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-warning pe-none">POST</button></td>
-                        <td id="Banner_Link4">https://pemkot.kotabogor-api.my.id/Banner_LinkUpd/{id}</td>
+                        <td id="Banner_Link4">https://api.kotabogor.my.id/Banner_LinkUpd/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Banner_Link4')">Copy</button></td>
                     </tr>
                     <tr>
                         <td class="col-1" scope="row"><button
                                 class="btn btn-outline-danger pe-none">DELETE</button></td>
-                        <td id="Banner_Link5">https://pemkot.kotabogor-api.my.id/Banner_LinkDest/{id}</td>
+                        <td id="Banner_Link5">https://api.kotabogor.my.id/Banner_LinkDest/{id}</td>
                         <td><button class="btn btn-success float-end"
                                 onclick="copy('Banner_Link5')">Copy</button></td>
                     </tr>
