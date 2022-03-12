@@ -47,12 +47,12 @@ class DataOPDController extends Controller
             ]);
 
             $file = $request->file('foto_kantor');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('images/opd', $fileName);
 
             $opd = new Data_opd;
             $opd->nama_opd = $request->nama_opd;
-            $opd->foto_kantor = $request->file('foto_kantor')->getClientOriginalName();
+            $opd->foto_kantor = $fileName;
             $opd->alamat = $request->alamat;
             $opd->telp = $request->telp;
             $opd->email = $request->email;
@@ -92,7 +92,7 @@ class DataOPDController extends Controller
             ]);
 
             $file = $request->file('foto_kantor');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('images/opd', $fileName);
 
             $destination = 'images/opd/' . $opd->foto_kantor;
@@ -102,7 +102,7 @@ class DataOPDController extends Controller
 
             $opd->update([
                 'nama_opd' => $request->nama_opd,
-                'foto_kantor' => $request->file('foto_kantor')->getClientOriginalName(),
+                'foto_kantor' => $fileName,
                 'alamat' => $request->alamat,
                 'telp' => $request->telp,
                 'email' => $request->email,

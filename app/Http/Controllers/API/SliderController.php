@@ -42,13 +42,13 @@ class SliderController extends Controller
             ]);
 
             $file = $request->file('gambar');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('images/slider', $fileName);
 
             $slider = new Slider;
             $slider->judul = $request->judul;
             $slider->keterangan = $request->keterangan;
-            $slider->gambar = $request->file('gambar')->getClientOriginalName();
+            $slider->gambar = $fileName;
             $slider->status = $request->status;
             $slider->save();
 
@@ -77,7 +77,7 @@ class SliderController extends Controller
             ]);
 
             $file = $request->file('gambar');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('images/slider', $fileName);
 
             $destination = 'images/slider/' . $slider->gambar;
@@ -88,7 +88,7 @@ class SliderController extends Controller
             $slider->update([
                 'judul' => $request->judul,
                 'keterangan' => $request->keterangan,
-                'gambar' => $request->file('gambar')->getClientOriginalName(),
+                'gambar' => $fileName,
                 'status' => $request->status
             ]);
 

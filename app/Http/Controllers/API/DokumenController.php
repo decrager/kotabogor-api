@@ -42,13 +42,13 @@ class DokumenController extends Controller
             ]);
 
             $file = $request->file('file');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('files/dokumen', $fileName);
 
             $dokumen = new Dokumen;
             $dokumen->nama_doc = $request->nama_doc;
             $dokumen->link = $request->link;
-            $dokumen->file = $request->file('file')->getClientOriginalName();
+            $dokumen->file = $fileName;
             $dokumen->keterangan = $request->keterangan;
             $dokumen->save();
 
@@ -77,7 +77,7 @@ class DokumenController extends Controller
             ]);
 
             $file = $request->file('file');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('files/dokumen', $fileName);
 
             $destination = 'files/dokumen/' . $dokumen->file;
@@ -88,7 +88,7 @@ class DokumenController extends Controller
             $dokumen->update([
                 'nama_doc' => $request->nama_doc,
                 'link' => $request->link,
-                'file' => $request->file('file')->getClientOriginalName(),
+                'file' => $fileName,
                 'keterangan' => $request->keterangan
             ]);
 

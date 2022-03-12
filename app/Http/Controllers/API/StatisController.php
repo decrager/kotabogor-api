@@ -45,14 +45,14 @@ class StatisController extends Controller
             ]);
 
             $file = $request->file('file');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('images/statis', $fileName);
 
             $statis = new Statis;
             $statis->judul = $request->judul;
             $statis->kategori_id = $request->kategori_id;
             $statis->isi = $request->isi;
-            $statis->file = $request->file('file')->getClientOriginalName();
+            $statis->file = $fileName;
             $statis->tgl = $request->tgl;
             $statis->status = $request->status;
             $statis->user_id = $request->user_id;
@@ -86,7 +86,7 @@ class StatisController extends Controller
             ]);
 
             $file = $request->file('file');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('images/statis', $fileName);
 
             $destination = 'images/statis/' . $statis->file;
@@ -98,7 +98,7 @@ class StatisController extends Controller
                 'judul' => $request->judul,
                 'kategori_id' => $request->kategori_id,
                 'isi' => $request->isi,
-                'file' => $request->file('file')->getClientOriginalName(),
+                'file' => $fileName,
                 'tgl' => $request->tgl,
                 'status' => $request->status,
                 'user_id' => $request->user_id

@@ -42,13 +42,13 @@ class FotoController extends Controller
             ]);
 
             $file = $request->file('foto');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('images/foto', $fileName);
 
             $foto = new Foto;
             $foto->album_id = $request->album_id;
             $foto->judul = $request->judul;
-            $foto->foto = $request->file('foto')->getClientOriginalName();
+            $foto->foto = $fileName;
             $foto->keterangan = $request->keterangan;
             $foto->save();
 
@@ -77,7 +77,7 @@ class FotoController extends Controller
             ]);
 
             $file = $request->file('foto');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('images/foto', $fileName);
 
             $destination = 'images/foto/' . $foto->foto;
@@ -88,7 +88,7 @@ class FotoController extends Controller
             $foto->update([
                 'album_id' => $request->album_id,
                 'judul' => $request->judul,
-                'foto' => $request->file('foto')->getClientOriginalName(),
+                'foto' => $fileName,
                 'keterangan' => $request->keterangan
             ]);
 

@@ -42,12 +42,12 @@ class Banner_LinkController extends Controller
             ]);
 
             $file = $request->file('gambar');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('images/banner_link', $fileName);
 
             $link = new Banner_Link;
             $link->judul = $request->judul;
-            $link->gambar = $request->file('gambar')->getClientOriginalName();
+            $link->gambar = $fileName;
             $link->link = $request->link;
             $link->status = $request->status;
             $link->save();
@@ -77,7 +77,7 @@ class Banner_LinkController extends Controller
             ]);
 
             $file = $request->file('gambar');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('images/banner_link', $fileName);
 
             $destination = 'images/banner_link/' . $link->gambar;
@@ -87,7 +87,7 @@ class Banner_LinkController extends Controller
 
             $link->update([
                 'judul' => $request->judul,
-                'gambar' => $request->file('gambar')->getClientOriginalName(),
+                'gambar' => $fileName,
                 'link' => $request->link,
                 'status' => $request->status
             ]);

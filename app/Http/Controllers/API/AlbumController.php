@@ -42,13 +42,13 @@ class AlbumController extends Controller
             ]);
 
             $file = $request->file('cover');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('images/album', $fileName);
 
             $album = new Album;
             $album->judul = $request->judul;
             $album->tgl = $request->tgl;
-            $album->cover = $request->file('cover')->getClientOriginalName();
+            $album->cover = $fileName;
             $album->user_id = $request->user_id;
             $album->save();
 
@@ -77,7 +77,7 @@ class AlbumController extends Controller
             ]);
 
             $file = $request->file('cover');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('images/album', $fileName);
 
             $destination = 'images/album/' . $album->cover;
@@ -88,7 +88,7 @@ class AlbumController extends Controller
             $album->update([
                 'judul' => $request->judul,
                 'tgl' => $request->tgl,
-                'cover' => $request->file('cover')->getClientOriginalName(),
+                'cover' => $fileName,
                 'user_id' => $request->user_id
             ]);
 

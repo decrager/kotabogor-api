@@ -44,12 +44,12 @@ class Banner_AnnounceController extends Controller
             ]);
 
             $file = $request->file('gambar');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('images/banner_announce', $fileName);
 
             $announce = new Banner_Announce;
             $announce->judul = $request->judul;
-            $announce->gambar = $request->file('gambar')->getClientOriginalName();
+            $announce->gambar = $fileName;
             $announce->keterangan = $request->keterangan;
             $announce->status = $request->status;
             $announce->link = $request->link;
@@ -83,7 +83,7 @@ class Banner_AnnounceController extends Controller
             ]);
 
             $file = $request->file('gambar');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('images/banner_announce', $fileName);
 
             $destination = 'images/banner_announce/' . $announce->gambar;
@@ -93,7 +93,7 @@ class Banner_AnnounceController extends Controller
 
             $announce->update([
                 'judul' => $request->judul,
-                'gambar' => $request->file('gambar')->getClientOriginalName(),
+                'gambar' => $fileName,
                 'keterangan' => $request->keterangan,
                 'status' => $request->status,
                 'link' => $request->link,

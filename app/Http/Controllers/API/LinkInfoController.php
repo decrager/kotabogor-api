@@ -42,14 +42,14 @@ class LinkInfoController extends Controller
             ]);
 
             $file = $request->file('gambar');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('images/linkinfo', $fileName);
 
             $info = new Link_Info;
             $info->judul = $request->judul;
             $info->keterangan = $request->keterangan;
             $info->link = $request->link;
-            $info->gambar = $request->file('gambar')->getClientOriginalName();
+            $info->gambar = $fileName;
             $info->save();
 
             return response()->json([
@@ -77,7 +77,7 @@ class LinkInfoController extends Controller
             ]);
 
             $file = $request->file('gambar');
-            $fileName = $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('images/linkinfo', $fileName);
 
             $destination = 'images/linkinfo/' . $info->gambar;
@@ -89,7 +89,7 @@ class LinkInfoController extends Controller
                 'judul' => $request->judul,
                 'keterangan' => $request->keterangan,
                 'link' => $request->link,
-                'gambar' => $request->file('gambar')->getClientOriginalName()
+                'gambar' => $fileName
             ]);
 
             return response()->json([
