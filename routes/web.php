@@ -21,6 +21,7 @@ use App\Http\Controllers\API\StatisController;
 use App\Http\Controllers\API\VideoController;
 use App\Http\Controllers\API\VisitorController;
 use App\Http\Controllers\API\RelationController;
+use Illuminate\Auth\Events\Verified;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,15 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/statistic', function () {
+    return view('statistic');
+})->middleware(['auth', 'verified'])->name('statistic');
+
+Route::get('/registeredUser', function () {
+    return view('registeredUser');
+})->middleware(['auth', 'verified'])->name('registeredUser');
 
 require __DIR__.'/auth.php';
 

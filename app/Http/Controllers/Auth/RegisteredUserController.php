@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
@@ -37,7 +38,8 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role' => ['required', 'string'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'g-recaptcha-response' => 'recaptcha'
         ]);
 
         $user = User::create([
@@ -46,6 +48,8 @@ class RegisteredUserController extends Controller
             'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
+
+        Config::set('mail.from.address', $request->email);
 
         event(new Registered($user));
 
