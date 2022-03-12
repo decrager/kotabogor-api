@@ -50,6 +50,7 @@ class RegisteredUserController extends Controller
         ]);
 
         Config::set('mail.from.address', $request->email);
+        Config::set('mail.from.name', $request->name);
 
         event(new Registered($user));
 

@@ -44,15 +44,15 @@
 {{ $salutation }}
 @else
 @lang('Regards'),<br>
-{{ "REST API Pemerintah Kota Bogor" }}
+{{ config('mail.from.name') }}
 @endif
 
 {{-- Subcopy --}}
 @isset($actionText)
 @slot('subcopy')
 @lang(
-    "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
-    'into your web browser:',
+    "Jika terdapat kesulitan dalam mengklik tombol \":actionText\" , salin dan tempelkan URL dibawah\n".
+    'pada web browser Anda:',
     [
         'actionText' => $actionText,
     ]

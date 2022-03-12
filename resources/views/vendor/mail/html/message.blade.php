@@ -2,7 +2,7 @@
 {{-- Header --}}
 @slot('header')
 @component('mail::header', ['url' => config('app.url')])
-{{ "REST API Pemerintah Kota Bogor" }}
+{{ "Verifikasi Email Pengguna" }}
 @endcomponent
 @endslot
 
