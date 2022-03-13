@@ -137,7 +137,26 @@ class RelationController extends Controller
         ], Response::HTTP_OK);
     }
 
-    public function Berita(Request $request)
+    public function Berita()
+    {
+        $berita = Berita::with('Kat_Berita', 'Pengguna')
+            ->select(
+                'id',
+                'judul',
+                'kategori_id',
+                'isi',
+                'gambar',
+                'tgl',
+                'user_id'
+            )->get();
+
+        return response()->json([
+            'message' => 'Data berita With kategori & pengguna Loaded Successfully',
+            'berita' => $berita
+        ], Response::HTTP_OK);
+    }
+    
+    public function BeritaPublic(Request $request)
     {
         $berita = Berita::with('Kat_Berita', 'Pengguna')
             ->select(

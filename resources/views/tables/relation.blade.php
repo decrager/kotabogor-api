@@ -236,6 +236,14 @@
                             <tr>
                                 <td class="col-1" scope="row"><button
                                         class="btn btn-outline-success pe-none">GET</button></td>
+                                <td>https://api.kotabogor.my.id/Relation/BeritaPublic <font style="opacity: 60%"> (Search & Pagination Ready)</font></td>
+                                <p hidden id="Berita02">https://api.kotabogor.my.id/Relation/BeritaPublic</p>
+                                <td><button class="btn btn-success float-end" onclick="copy('Berita02')">Copy</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-1" scope="row"><button
+                                        class="btn btn-outline-success pe-none">GET</button></td>
                                 <td id="Berita02">https://api.kotabogor.my.id/Relation/Berita/{id}</td>
                                 <td><button class="btn btn-success float-end" onclick="copy('Berita02')">Copy</button>
                                 </td>
