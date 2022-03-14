@@ -155,7 +155,7 @@ class RelationController extends Controller
             'berita' => $berita
         ], Response::HTTP_OK);
     }
-    
+
     public function BeritaPublic(Request $request)
     {
         $berita = Berita::with('Kat_Berita', 'Pengguna')
@@ -174,7 +174,12 @@ class RelationController extends Controller
                 ->orWhere('isi', 'like', '%' . $request->search . '%');
         }
 
-        $show = $berita->paginate(6);
+        if ($request->perPage) {
+            $perPage = $request->perPage;
+            $show = $berita->paginate($perPage);
+        } else {
+            $show = $berita->get();
+        }
 
         return response()->json([
             'message' => 'Data berita With kategori & pengguna Loaded Successfully',
