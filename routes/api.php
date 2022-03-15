@@ -162,6 +162,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/Relation/Banner_Announce', [RelationController::class, 'Banner_Announce']);
     Route::get('/Relation/Banner_Announce/{id}', [RelationController::class, 'Banner_AnnounceById']);
     Route::get('/Relation/Berita', [RelationController::class, 'Berita']);
+    Route::get('/Relation/BeritaPublic', [RelationController::class, 'BeritaPublic']);
     Route::get('/Relation/Berita/{id}', [RelationController::class, 'BeritaById']);
     Route::get('/Relation/Foto', [RelationController::class, 'Foto']);
     Route::get('/Relation/Foto/{id}', [RelationController::class, 'FotoById']);
