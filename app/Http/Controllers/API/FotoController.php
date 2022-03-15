@@ -2,17 +2,42 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\Models\Foto;
+use App\Models\Counter;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Response;
 
 class FotoController extends Controller
 {
     public function view()
     {
+        // Counter
+        $today = Carbon::today()->toDateString();
+        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Foto')->where('tanggal', $today)->get();
+        $tanggal = Counter::select('tanggal')->where('api', 'Foto')->where('tanggal', $today)->first();
+
+        if ($check->isEmpty()) {
+            $counter = new Counter;
+            $counter->api = 'Foto';
+            $counter->tanggal = $today;
+            $counter->visit = 1;
+            $counter->save();
+        } elseif ($tanggal->tanggal == $today) {
+            $counter = Counter::where('api', 'Foto')->where('tanggal', $today);
+            $counter->increment('visit');
+        } elseif ($tanggal->tanggal != $today) {
+            $counter = new Counter;
+            $counter->api = 'Foto';
+            $counter->tanggal = $today;
+            $counter->visit = 1;
+            $counter->save();
+        }
+        // End Counter
+        
         $foto = Foto::orderBy('id', 'ASC')->get();
         return response()->json([
             'message' => 'Data photo Loaded Successfully',

@@ -2,18 +2,43 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use App\Models\Counter;
+use App\Models\Pengguna;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Pengguna;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Response;
 
 class PenggunaController extends Controller
 {
     public function view()
     {
+        // Counter
+        $today = Carbon::today()->toDateString();
+        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Pengguna')->where('tanggal', $today)->get();
+        $tanggal = Counter::select('tanggal')->where('api', 'Pengguna')->where('tanggal', $today)->first();
+
+        if ($check->isEmpty()) {
+            $counter = new Counter;
+            $counter->api = 'Pengguna';
+            $counter->tanggal = $today;
+            $counter->visit = 1;
+            $counter->save();
+        } elseif ($tanggal->tanggal == $today) {
+            $counter = Counter::where('api', 'Pengguna')->where('tanggal', $today);
+            $counter->increment('visit');
+        } elseif ($tanggal->tanggal != $today) {
+            $counter = new Counter;
+            $counter->api = 'Pengguna';
+            $counter->tanggal = $today;
+            $counter->visit = 1;
+            $counter->save();
+        }
+        // End Counter
+        
         $pengguna = Pengguna::orderBy('id', 'ASC')->get();
         return response()->json([
             'message' => 'Data pengguna Loaded Successfully',

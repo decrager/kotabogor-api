@@ -2,16 +2,41 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use App\Models\Counter;
 use App\Models\Komentar;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class KomentarController extends Controller
 {
     public function view()
     {
+        // Counter
+        $today = Carbon::today()->toDateString();
+        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Komentar')->where('tanggal', $today)->get();
+        $tanggal = Counter::select('tanggal')->where('api', 'Komentar')->where('tanggal', $today)->first();
+
+        if ($check->isEmpty()) {
+            $counter = new Counter;
+            $counter->api = 'Komentar';
+            $counter->tanggal = $today;
+            $counter->visit = 1;
+            $counter->save();
+        } elseif ($tanggal->tanggal == $today) {
+            $counter = Counter::where('api', 'Komentar')->where('tanggal', $today);
+            $counter->increment('visit');
+        } elseif ($tanggal->tanggal != $today) {
+            $counter = new Counter;
+            $counter->api = 'Komentar';
+            $counter->tanggal = $today;
+            $counter->visit = 1;
+            $counter->save();
+        }
+        // End Counter
+        
         $komentar = Komentar::orderBy('id', 'ASC')->get();
         return response()->json([
             'message' => 'Data komentar Loaded Successfully',

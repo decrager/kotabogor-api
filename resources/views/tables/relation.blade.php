@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="text-start" style="font-size: 18px">
-                            Tabel Agenda dengan pengguna
+                            Tabel Agenda dengan Pengguna
                         </div>
                     </div>
                     <div class="col-6">
@@ -148,7 +148,7 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="text-start" style="font-size: 18px">
-                            Tabel Banner_announce dengan Pengguna
+                            Tabel Banner Announcement dengan Pengguna
                         </div>
                     </div>
                     <div class="col-6">
@@ -211,7 +211,7 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="text-start" style="font-size: 18px">
-                            Tabel Berita dengan Kategori & Pengguna
+                            Tabel Berita dengan Kategori Berita & Pengguna
                         </div>
                     </div>
                     <div class="col-6">
@@ -404,7 +404,7 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="text-start" style="font-size: 18px">
-                            Tabel Statis dengan Kategori & Pengguna
+                            Tabel Statis dengan Kategori Statis & Pengguna
                         </div>
                     </div>
                     <div class="col-6">

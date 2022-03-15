@@ -2,17 +2,41 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\Models\Album;
+use App\Models\Counter;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Response;
 
 class AlbumController extends Controller
 {
     public function view()
     {
+        // Counter
+        $today = Carbon::today()->toDateString();
+        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Album')->where('tanggal', $today)->get();
+        $tanggal = Counter::select('tanggal')->where('api', 'Album')->where('tanggal', $today)->first();
+
+        if ($check->isEmpty()) {
+            $counter = new Counter;
+            $counter->api = 'Album';
+            $counter->tanggal = $today;
+            $counter->visit = 1;
+            $counter->save();
+        } elseif ($tanggal->tanggal == $today) {
+            $counter = Counter::where('api', 'Album')->where('tanggal', $today);
+            $counter->increment('visit');
+        } elseif ($tanggal->tanggal != $today) {
+            $counter = new Counter;
+            $counter->api = 'Album';
+            $counter->tanggal = $today;
+            $counter->visit = 1;
+            $counter->save();
+        }
+        // End Counter
         $album = Album::orderBy('id', 'ASC')->get();
         return response()->json([
             'message' => 'Data album Loaded Successfully',

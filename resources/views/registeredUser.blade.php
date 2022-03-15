@@ -15,8 +15,8 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if (Auth::User()->role == 'admin')
                         <div class="row col-12 mb-2">
-                            <div class="col-6">
-                                <div class="text-start ml-3" style="font-size: 20px;">
+                            <div class="col-6 d-flex">
+                                <div class="row text-start justify-content-center align-self-center ml-3" style="font-size: 20px;">
                                     Daftar Pengguna
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                                 </form>
                             </div>
                         </div>
-
+                        <hr class="mt-3">
                         <div class="table-responsive">
                             <table class="table table-hover table-striped" width="100%" cellspacing="0">
                                 <thead >

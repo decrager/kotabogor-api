@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-6">
                 <div class="text-start" style="font-size: 20px">
-                    Tabel Data_OPD
+                    Tabel Data OPD
                 </div>
             </div>
             <div class="col-6">
