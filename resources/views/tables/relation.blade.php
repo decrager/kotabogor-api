@@ -229,7 +229,8 @@
                             <tr>
                                 <td class="col-1" scope="row"><button
                                         class="btn btn-outline-success pe-none">GET</button></td>
-                                <td id="Berita01">https://api.kotabogor.my.id/Relation/Berita</td>
+                                <td>https://api.kotabogor.my.id/Relation/Berita <font style="opacity: 60%"> (Categorize Ready)</font></td>
+                                <p hidden id="Berita01">https://api.kotabogor.my.id/Relation/Berita</p>
                                 <td><button class="btn btn-success float-end" onclick="copy('Berita01')">Copy</button>
                                 </td>
                             </tr>
