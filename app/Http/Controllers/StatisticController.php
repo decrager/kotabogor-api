@@ -9,7 +9,9 @@ class StatisticController extends Controller
 {
     public function index()
     {
-        $statistic = Counter::select('api', 'tanggal', 'visit');
+        $statistic = Counter::select('api', 'tanggal', 'visit')
+                            ->orderBy('tanggal', 'DESC')
+                            ->orderBy('api', 'ASC');
 
         if (request('date')) {
             $date = request('date');
