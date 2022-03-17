@@ -201,7 +201,6 @@ class RelationController extends Controller
             'beritas.isi',
             'beritas.gambar',
             'beritas.tgl',
-            'beritas.status',
             'beritas.user_id'
         );
 
@@ -238,7 +237,6 @@ class RelationController extends Controller
             'beritas.isi',
             'beritas.gambar',
             'beritas.tgl',
-            'beritas.status',
             'beritas.user_id'
         );
 
