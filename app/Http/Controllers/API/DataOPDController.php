@@ -13,31 +13,34 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DataOPDController extends Controller
 {
-    public function view()
+    public function counter($API)
     {
-        // Counter
         $today = Carbon::today()->toDateString();
-        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Data OPD')->where('tanggal', $today)->get();
-        $tanggal = Counter::select('tanggal')->where('api', 'Data OPD')->where('tanggal', $today)->first();
+        $check = Counter::select('api', 'tanggal', 'visit')->where('api', $API)->where('tanggal', $today)->get();
+        $tanggal = Counter::select('tanggal')->where('api', $API)->where('tanggal', $today)->first();
 
         if ($check->isEmpty()) {
             $counter = new Counter;
-            $counter->api = 'Data OPD';
+            $counter->api = $API;
             $counter->tanggal = $today;
             $counter->visit = 1;
             $counter->save();
         } elseif ($tanggal->tanggal == $today) {
-            $counter = Counter::where('api', 'Data OPD')->where('tanggal', $today);
+            $counter = Counter::where('api', $API)->where('tanggal', $today);
             $counter->increment('visit');
         } elseif ($tanggal->tanggal != $today) {
             $counter = new Counter;
-            $counter->api = 'Data OPD';
+            $counter->api = $API;
             $counter->tanggal = $today;
             $counter->visit = 1;
             $counter->save();
         }
-        // End Counter
+    }
 
+    public function view()
+    {
+        $this->counter('Data OPD');
+        
         $opd = Data_opd::orderBy('id', 'ASC')->get();
         return response()->json([
             'message' => 'Data data_opd Loaded Successfully',
@@ -47,6 +50,8 @@ class DataOPDController extends Controller
 
     public function viewById($id)
     {
+        $this->counter('Data OPD');
+
         $opd = Data_opd::find($id);
         return response()->json([
             'message' => 'Data data_opd Loaded Successfully',
@@ -56,6 +61,8 @@ class DataOPDController extends Controller
 
     public function create(Request $request)
     {
+        $this->counter('Data OPD');
+
         $user = Auth::user();
 
         if ($user->role == 'admin') {
@@ -100,6 +107,8 @@ class DataOPDController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->counter('Data OPD');
+
         $opd = Data_opd::find($id);
         $user = Auth::user();
 
@@ -150,6 +159,8 @@ class DataOPDController extends Controller
 
     public function destroy($id)
     {
+        $this->counter('Data OPD');
+        
         $user = Auth::user();
         $opd = Data_opd::find($id);
         $destination = 'images/opd/' . $opd->foto_kantor;

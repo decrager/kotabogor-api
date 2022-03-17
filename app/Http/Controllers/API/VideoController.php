@@ -13,30 +13,33 @@ use Symfony\Component\HttpFoundation\Response;
 
 class VideoController extends Controller
 {
-    public function view()
+    public function counter($API)
     {
-        // Counter
         $today = Carbon::today()->toDateString();
-        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Video')->where('tanggal', $today)->get();
-        $tanggal = Counter::select('tanggal')->where('api', 'Video')->where('tanggal', $today)->first();
+        $check = Counter::select('api', 'tanggal', 'visit')->where('api', $API)->where('tanggal', $today)->get();
+        $tanggal = Counter::select('tanggal')->where('api', $API)->where('tanggal', $today)->first();
 
         if ($check->isEmpty()) {
             $counter = new Counter;
-            $counter->api = 'Video';
+            $counter->api = $API;
             $counter->tanggal = $today;
             $counter->visit = 1;
             $counter->save();
         } elseif ($tanggal->tanggal == $today) {
-            $counter = Counter::where('api', 'Video')->where('tanggal', $today);
+            $counter = Counter::where('api', $API)->where('tanggal', $today);
             $counter->increment('visit');
         } elseif ($tanggal->tanggal != $today) {
             $counter = new Counter;
-            $counter->api = 'Video';
+            $counter->api = $API;
             $counter->tanggal = $today;
             $counter->visit = 1;
             $counter->save();
         }
-        // End Counter
+    }
+    
+    public function view()
+    {
+        $this->counter('Video');
         
         $video = Video::orderBy('id', 'ASC')->get();
         return response()->json([
@@ -47,6 +50,8 @@ class VideoController extends Controller
 
     public function viewById($id)
     {
+        $this->counter('Video');
+
         $video = Video::find($id);
         return response()->json([
             'message' => 'Data video Loaded Successfully',
@@ -56,6 +61,8 @@ class VideoController extends Controller
 
     public function create(Request $request)
     {
+        $this->counter('Video');
+
         $user = Auth::user();
 
         if ($user->role == 'admin') {
@@ -92,6 +99,8 @@ class VideoController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->counter('Video');
+
         $video = Video::find($id);
         $user = Auth::user();
 
@@ -134,6 +143,8 @@ class VideoController extends Controller
 
     public function destroy($id)
     {
+        $this->counter('Video');
+        
         $user = Auth::user();
         $video = Video::find($id);
         $destination = 'images/video/' . $video->cover;

@@ -12,32 +12,40 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AgendaController extends Controller
 {
-    public function view()
+    public function counter($API)
     {
-        // Counter
         $today = Carbon::today()->toDateString();
-        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Agenda')->where('tanggal', $today)->get();
-        $tanggal = Counter::select('tanggal')->where('api', 'Agenda')->where('tanggal', $today)->first();
+        $check = Counter::select('api', 'tanggal', 'visit')->where('api', $API)->where('tanggal', $today)->get();
+        $tanggal = Counter::select('tanggal')->where('api', $API)->where('tanggal', $today)->first();
 
         if ($check->isEmpty()) {
             $counter = new Counter;
-            $counter->api = 'Agenda';
+            $counter->api = $API;
             $counter->tanggal = $today;
             $counter->visit = 1;
             $counter->save();
         } elseif ($tanggal->tanggal == $today) {
-            $counter = Counter::where('api', 'Agenda')->where('tanggal', $today);
+            $counter = Counter::where('api', $API)->where('tanggal', $today);
             $counter->increment('visit');
         } elseif ($tanggal->tanggal != $today) {
             $counter = new Counter;
-            $counter->api = 'Agenda';
+            $counter->api = $API;
             $counter->tanggal = $today;
             $counter->visit = 1;
             $counter->save();
         }
-        // End Counter
+    }
 
-        $agenda = Agenda::orderBy('id', 'ASC')->get();
+    public function view(Request $request)
+    {
+        $this->counter('Agenda');
+
+        if ($request->order == 'DESC' or $request->order == 'ASC') {
+            $agenda = Agenda::orderBy('id', $request->order)->get();
+        } else {
+            $agenda = Agenda::orderBy('id', 'ASC')->get();
+        }
+        
         return response()->json([
             'message' => 'Data agenda Loaded Successfully',
             'agenda' => $agenda
@@ -46,6 +54,8 @@ class AgendaController extends Controller
 
     public function viewById($id)
     {
+        $this->counter('Agenda');
+
         $agenda = Agenda::find($id);
         return response()->json([
             'message' => 'Data agenda Loaded Successfully',
@@ -55,6 +65,8 @@ class AgendaController extends Controller
 
     public function create(Request $request)
     {
+        $this->counter('Agenda');
+
         $user = Auth::user();
 
         if ($user->role == 'admin') {
@@ -89,6 +101,8 @@ class AgendaController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->counter('Agenda');
+
         $agenda = Agenda::find($id);
         $user = Auth::user();
 
@@ -124,6 +138,8 @@ class AgendaController extends Controller
 
     public function destroy($id)
     {
+        $this->counter('Agenda');
+
         $user = Auth::user();
 
         if ($user->role == 'admin') {

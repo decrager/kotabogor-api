@@ -12,30 +12,33 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FaqController extends Controller
 {
-    public function view()
+    public function counter($API)
     {
-        // Counter
         $today = Carbon::today()->toDateString();
-        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'FAQ')->where('tanggal', $today)->get();
-        $tanggal = Counter::select('tanggal')->where('api', 'FAQ')->where('tanggal', $today)->first();
+        $check = Counter::select('api', 'tanggal', 'visit')->where('api', $API)->where('tanggal', $today)->get();
+        $tanggal = Counter::select('tanggal')->where('api', $API)->where('tanggal', $today)->first();
 
         if ($check->isEmpty()) {
             $counter = new Counter;
-            $counter->api = 'FAQ';
+            $counter->api = $API;
             $counter->tanggal = $today;
             $counter->visit = 1;
             $counter->save();
         } elseif ($tanggal->tanggal == $today) {
-            $counter = Counter::where('api', 'FAQ')->where('tanggal', $today);
+            $counter = Counter::where('api', $API)->where('tanggal', $today);
             $counter->increment('visit');
         } elseif ($tanggal->tanggal != $today) {
             $counter = new Counter;
-            $counter->api = 'FAQ';
+            $counter->api = $API;
             $counter->tanggal = $today;
             $counter->visit = 1;
             $counter->save();
         }
-        // End Counter
+    }
+
+    public function view()
+    {
+        $this->counter('FAQ');
         
         $faq = Faq::orderBy('id', 'ASC')->get();
         return response()->json([
@@ -46,6 +49,8 @@ class FaqController extends Controller
 
     public function viewById($id)
     {
+        $this->counter('FAQ');
+
         $faq = Faq::find($id);
         return response()->json([
             'message' => 'Data faq Loaded Successfully',
@@ -55,6 +60,8 @@ class FaqController extends Controller
 
     public function create(Request $request)
     {
+        $this->counter('FAQ');
+
         $user = Auth::user();
 
         if ($user->role == 'admin') {
@@ -81,6 +88,8 @@ class FaqController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->counter('FAQ');
+
         $faq = Faq::find($id);
         $user = Auth::user();
 
@@ -108,6 +117,8 @@ class FaqController extends Controller
 
     public function destroy($id)
     {
+        $this->counter('FAQ');
+        
         $user = Auth::user();
 
         if ($user->role == 'admin') {

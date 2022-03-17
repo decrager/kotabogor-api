@@ -22,42 +22,49 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RelationController extends Controller
 {
-    public function Agenda()
+    public function counter($API)
     {
-        // Counter
         $today = Carbon::today()->toDateString();
-        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Relational Agenda')->where('tanggal', $today)->get();
-        $tanggal = Counter::select('tanggal')->where('api', 'Relational Agenda')->where('tanggal', $today)->first();
+        $check = Counter::select('api', 'tanggal', 'visit')->where('api', $API)->where('tanggal', $today)->get();
+        $tanggal = Counter::select('tanggal')->where('api', $API)->where('tanggal', $today)->first();
 
         if ($check->isEmpty()) {
             $counter = new Counter;
-            $counter->api = 'Relational Agenda';
+            $counter->api = $API;
             $counter->tanggal = $today;
             $counter->visit = 1;
             $counter->save();
         } elseif ($tanggal->tanggal == $today) {
-            $counter = Counter::where('api', 'Relational Agenda')->where('tanggal', $today);
+            $counter = Counter::where('api', $API)->where('tanggal', $today);
             $counter->increment('visit');
         } elseif ($tanggal->tanggal != $today) {
             $counter = new Counter;
-            $counter->api = 'Relational Agenda';
+            $counter->api = $API;
             $counter->tanggal = $today;
             $counter->visit = 1;
             $counter->save();
         }
-        // End Counter
+    }
 
-        $agenda = Agenda::with('Pengguna')
-            ->select(
-                'id',
-                'hari',
-                'tgl',
-                'waktu',
-                'lokasi',
-                'kegiatan',
-                'user_id'
-            )
-            ->get();
+    public function Agenda(Request $request)
+    {
+        $this->counter('Relational Agenda');
+
+        $agenda = Agenda::with('Pengguna');
+
+        if ($request->order == 'DESC' or $request->order == 'ASC') {
+            $agenda = $agenda->orderBy('id', $request->order);
+        }
+
+        $agenda = $agenda->select(
+            'id',
+            'hari',
+            'tgl',
+            'waktu',
+            'lokasi',
+            'kegiatan',
+            'user_id'
+        )->get();
 
         return response()->json([
             'message' => 'Data agenda With pengguna Loaded Successfully',
@@ -67,6 +74,8 @@ class RelationController extends Controller
 
     public function AgendaById($id)
     {
+        $this->counter('Relational Agenda');
+
         $agenda = Agenda::with('Pengguna')
             ->select(
                 'id',
@@ -86,33 +95,17 @@ class RelationController extends Controller
         ], Response::HTTP_OK);
     }
 
-    public function Album()
+    public function Album(Request $request)
     {
-        // Counter
-        $today = Carbon::today()->toDateString();
-        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Relational Album')->where('tanggal', $today)->get();
-        $tanggal = Counter::select('tanggal')->where('api', 'Relational Album')->where('tanggal', $today)->first();
+        $this->counter('Relational Album');
 
-        if ($check->isEmpty()) {
-            $counter = new Counter;
-            $counter->api = 'Relational Album';
-            $counter->tanggal = $today;
-            $counter->visit = 1;
-            $counter->save();
-        } elseif ($tanggal->tanggal == $today) {
-            $counter = Counter::where('api', 'Relational Album')->where('tanggal', $today);
-            $counter->increment('visit');
-        } elseif ($tanggal->tanggal != $today) {
-            $counter = new Counter;
-            $counter->api = 'Relational Album';
-            $counter->tanggal = $today;
-            $counter->visit = 1;
-            $counter->save();
+        $album = Album::with('Pengguna');
+
+        if ($request->order == 'DESC' or $request->order == 'ASC') {
+            $album = $album->orderBy('id', $request->order);
         }
-        // End Counter
 
-        $album = Album::with('Pengguna')
-            ->select(
+        $album = $album->select(
                 'id',
                 'judul',
                 'tgl',
@@ -128,6 +121,8 @@ class RelationController extends Controller
 
     public function AlbumById($id)
     {
+        $this->counter('Relational Album');
+
         $album = Album::with('Pengguna')
             ->select(
                 'id',
@@ -147,28 +142,7 @@ class RelationController extends Controller
 
     public function Banner_Announce()
     {
-        // Counter
-        $today = Carbon::today()->toDateString();
-        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Relational Banner Announcement')->where('tanggal', $today)->get();
-        $tanggal = Counter::select('tanggal')->where('api', 'Relational Banner Announcement')->where('tanggal', $today)->first();
-
-        if ($check->isEmpty()) {
-            $counter = new Counter;
-            $counter->api = 'Relational Banner Announcement';
-            $counter->tanggal = $today;
-            $counter->visit = 1;
-            $counter->save();
-        } elseif ($tanggal->tanggal == $today) {
-            $counter = Counter::where('api', 'Relational Banner Announcement')->where('tanggal', $today);
-            $counter->increment('visit');
-        } elseif ($tanggal->tanggal != $today) {
-            $counter = new Counter;
-            $counter->api = 'Relational Banner Announcement';
-            $counter->tanggal = $today;
-            $counter->visit = 1;
-            $counter->save();
-        }
-        // End Counter
+        $this->counter('Relational Banner Announcement');
 
         $banner = Banner_Announce::with('Pengguna')
             ->select(
@@ -189,6 +163,8 @@ class RelationController extends Controller
 
     public function Banner_AnnounceById($id)
     {
+        $this->counter('Relational Banner Announcement');
+
         $banner = Banner_Announce::with('Pengguna')
             ->select(
                 'id',
@@ -210,39 +186,24 @@ class RelationController extends Controller
 
     public function Berita(Request $request)
     {
-        // Counter
-        $today = Carbon::today()->toDateString();
-        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Relational Berita')->where('tanggal', $today)->get();
-        $tanggal = Counter::select('tanggal')->where('api', 'Relational Berita')->where('tanggal', $today)->first();
+        $this->counter('Relational Berita');
 
-        if ($check->isEmpty()) {
-            $counter = new Counter;
-            $counter->api = 'Relational Berita';
-            $counter->tanggal = $today;
-            $counter->visit = 1;
-            $counter->save();
-        } elseif ($tanggal->tanggal == $today) {
-            $counter = Counter::where('api', 'Relational Berita')->where('tanggal', $today);
-            $counter->increment('visit');
-        } elseif ($tanggal->tanggal != $today) {
-            $counter = new Counter;
-            $counter->api = 'Relational Berita';
-            $counter->tanggal = $today;
-            $counter->visit = 1;
-            $counter->save();
+        $berita = Berita::with('Kat_berita', 'Pengguna');
+
+        if ($request->order == 'DESC' or $request->order == 'ASC') {
+            $berita = $berita->orderBy('id', $request->order);
         }
-        // End Counter
-        
-        $berita = Berita::with('Kat_Berita', 'Pengguna')
-            ->select(
-                'beritas.id',
-                'beritas.judul',
-                'beritas.kategori_id',
-                'beritas.isi',
-                'beritas.gambar',
-                'beritas.tgl',
-                'beritas.user_id'
-            );
+
+        $berita = $berita->select(
+            'beritas.id',
+            'beritas.judul',
+            'beritas.kategori_id',
+            'beritas.isi',
+            'beritas.gambar',
+            'beritas.tgl',
+            'beritas.status',
+            'beritas.user_id'
+        );
 
         if ($request->category) {
             $category = $request->category;
@@ -260,39 +221,26 @@ class RelationController extends Controller
 
     public function BeritaPublic(Request $request)
     {
-        // Counter
-        $today = Carbon::today()->toDateString();
-        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Relational Berita Public')->where('tanggal', $today)->get();
-        $tanggal = Counter::select('tanggal')->where('api', 'Relational Berita Public')->where('tanggal', $today)->first();
+        $this->counter('Relational Berita');
 
-        if ($check->isEmpty()) {
-            $counter = new Counter;
-            $counter->api = 'Relational Berita Public';
-            $counter->tanggal = $today;
-            $counter->visit = 1;
-            $counter->save();
-        } elseif ($tanggal->tanggal == $today) {
-            $counter = Counter::where('api', 'Relational Berita Public')->where('tanggal', $today);
-            $counter->increment('visit');
-        } elseif ($tanggal->tanggal != $today) {
-            $counter = new Counter;
-            $counter->api = 'Relational Berita Public';
-            $counter->tanggal = $today;
-            $counter->visit = 1;
-            $counter->save();
+        $berita = Berita::with('Kat_berita', 'Pengguna');
+
+        if ($request->order == 'DESC' or $request->order == 'ASC') {
+            $berita = $berita->orderBy('id', $request->order);
+        } else {
+            $berita = $berita->orderBy('id', 'DESC');
         }
-        // End Counter
-        
-        $berita = Berita::with('Kat_Berita', 'Pengguna')
-            ->select(
-                'beritas.id',
-                'beritas.judul',
-                'beritas.kategori_id',
-                'beritas.isi',
-                'beritas.gambar',
-                'beritas.tgl',
-                'beritas.user_id'
-            );
+
+        $berita = $berita->select(
+            'beritas.id',
+            'beritas.judul',
+            'beritas.kategori_id',
+            'beritas.isi',
+            'beritas.gambar',
+            'beritas.tgl',
+            'beritas.status',
+            'beritas.user_id'
+        );
 
         if ($request->search) {
             $berita->where('judul', 'like', '%' . $request->search . '%')
@@ -322,6 +270,8 @@ class RelationController extends Controller
 
     public function BeritaById($id)
     {
+        $this->counter('Relational Berita');
+
         $berita = Berita::with('Kat_Berita', 'Pengguna')
             ->select(
                 'id',
@@ -343,29 +293,8 @@ class RelationController extends Controller
 
     public function Foto()
     {
-        // Counter
-        $today = Carbon::today()->toDateString();
-        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Relational Foto')->where('tanggal', $today)->get();
-        $tanggal = Counter::select('tanggal')->where('api', 'Relational Foto')->where('tanggal', $today)->first();
+        $this->counter('Relational Foto');
 
-        if ($check->isEmpty()) {
-            $counter = new Counter;
-            $counter->api = 'Relational Foto';
-            $counter->tanggal = $today;
-            $counter->visit = 1;
-            $counter->save();
-        } elseif ($tanggal->tanggal == $today) {
-            $counter = Counter::where('api', 'Relational Foto')->where('tanggal', $today);
-            $counter->increment('visit');
-        } elseif ($tanggal->tanggal != $today) {
-            $counter = new Counter;
-            $counter->api = 'Relational Foto';
-            $counter->tanggal = $today;
-            $counter->visit = 1;
-            $counter->save();
-        }
-        // End Counter
-        
         $foto = Foto::with('Album')
             ->select(
                 'id',
@@ -383,6 +312,8 @@ class RelationController extends Controller
 
     public function FotoById($id)
     {
+        $this->counter('Relational Foto');
+
         $foto = Foto::with('Album')
             ->select(
                 'id',
@@ -402,29 +333,8 @@ class RelationController extends Controller
 
     public function Komentar()
     {
-        // Counter
-        $today = Carbon::today()->toDateString();
-        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Relational Komentar')->where('tanggal', $today)->get();
-        $tanggal = Counter::select('tanggal')->where('api', 'Relational Komentar')->where('tanggal', $today)->first();
+        $this->counter('Relational Komentar');
 
-        if ($check->isEmpty()) {
-            $counter = new Counter;
-            $counter->api = 'Relational Komentar';
-            $counter->tanggal = $today;
-            $counter->visit = 1;
-            $counter->save();
-        } elseif ($tanggal->tanggal == $today) {
-            $counter = Counter::where('api', 'Relational Komentar')->where('tanggal', $today);
-            $counter->increment('visit');
-        } elseif ($tanggal->tanggal != $today) {
-            $counter = new Counter;
-            $counter->api = 'Relational Komentar';
-            $counter->tanggal = $today;
-            $counter->visit = 1;
-            $counter->save();
-        }
-        // End Counter
-        
         $komentar = Berita::with('Komentar')
             ->select(
                 'id',
@@ -444,6 +354,8 @@ class RelationController extends Controller
 
     public function KomentarById($id)
     {
+        $this->counter('Relational Komentar');
+
         $komentar = Berita::with('Komentar')
             ->select(
                 'id',
@@ -465,29 +377,8 @@ class RelationController extends Controller
 
     public function Statis()
     {
-        // Counter
-        $today = Carbon::today()->toDateString();
-        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Relational Statis')->where('tanggal', $today)->get();
-        $tanggal = Counter::select('tanggal')->where('api', 'Relational Statis')->where('tanggal', $today)->first();
+        $this->counter('Relational Statis');
 
-        if ($check->isEmpty()) {
-            $counter = new Counter;
-            $counter->api = 'Relational Statis';
-            $counter->tanggal = $today;
-            $counter->visit = 1;
-            $counter->save();
-        } elseif ($tanggal->tanggal == $today) {
-            $counter = Counter::where('api', 'Relational Statis')->where('tanggal', $today);
-            $counter->increment('visit');
-        } elseif ($tanggal->tanggal != $today) {
-            $counter = new Counter;
-            $counter->api = 'Relational Statis';
-            $counter->tanggal = $today;
-            $counter->visit = 1;
-            $counter->save();
-        }
-        // End Counter
-        
         $statis = Statis::with('Kat_Statis', 'Pengguna')
             ->select(
                 'id',
@@ -508,6 +399,8 @@ class RelationController extends Controller
 
     public function StatisById($id)
     {
+        $this->counter('Relational Statis');
+
         $statis = Statis::with('Kat_Statis', 'Pengguna')
             ->select(
                 'id',
@@ -530,29 +423,8 @@ class RelationController extends Controller
 
     public function Video()
     {
-        // Counter
-        $today = Carbon::today()->toDateString();
-        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Relational Video')->where('tanggal', $today)->get();
-        $tanggal = Counter::select('tanggal')->where('api', 'Relational Video')->where('tanggal', $today)->first();
+        $this->counter('Relational Video');
 
-        if ($check->isEmpty()) {
-            $counter = new Counter;
-            $counter->api = 'Relational Video';
-            $counter->tanggal = $today;
-            $counter->visit = 1;
-            $counter->save();
-        } elseif ($tanggal->tanggal == $today) {
-            $counter = Counter::where('api', 'Relational Video')->where('tanggal', $today);
-            $counter->increment('visit');
-        } elseif ($tanggal->tanggal != $today) {
-            $counter = new Counter;
-            $counter->api = 'Relational Video';
-            $counter->tanggal = $today;
-            $counter->visit = 1;
-            $counter->save();
-        }
-        // End Counter
-        
         $video = Video::with('Pengguna')
             ->select(
                 'id',
@@ -571,6 +443,8 @@ class RelationController extends Controller
 
     public function VideoById($id)
     {
+        $this->counter('Relational Statis');
+
         $video = Video::with('Pengguna')
             ->select(
                 'id',

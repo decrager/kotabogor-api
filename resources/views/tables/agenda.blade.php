@@ -72,6 +72,9 @@
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }
+                        "Parameter": {
+                            "order": "DESC or ASC"
+                        }
                     </code>
                 </pre>
             </div>

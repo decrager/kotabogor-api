@@ -12,30 +12,33 @@ use Symfony\Component\HttpFoundation\Response;
 
 class KomentarController extends Controller
 {
-    public function view()
+    public function counter($API)
     {
-        // Counter
         $today = Carbon::today()->toDateString();
-        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Komentar')->where('tanggal', $today)->get();
-        $tanggal = Counter::select('tanggal')->where('api', 'Komentar')->where('tanggal', $today)->first();
+        $check = Counter::select('api', 'tanggal', 'visit')->where('api', $API)->where('tanggal', $today)->get();
+        $tanggal = Counter::select('tanggal')->where('api', $API)->where('tanggal', $today)->first();
 
         if ($check->isEmpty()) {
             $counter = new Counter;
-            $counter->api = 'Komentar';
+            $counter->api = $API;
             $counter->tanggal = $today;
             $counter->visit = 1;
             $counter->save();
         } elseif ($tanggal->tanggal == $today) {
-            $counter = Counter::where('api', 'Komentar')->where('tanggal', $today);
+            $counter = Counter::where('api', $API)->where('tanggal', $today);
             $counter->increment('visit');
         } elseif ($tanggal->tanggal != $today) {
             $counter = new Counter;
-            $counter->api = 'Komentar';
+            $counter->api = $API;
             $counter->tanggal = $today;
             $counter->visit = 1;
             $counter->save();
         }
-        // End Counter
+    }
+
+    public function view()
+    {
+        $this->counter('Komentar');
         
         $komentar = Komentar::orderBy('id', 'ASC')->get();
         return response()->json([
@@ -46,6 +49,8 @@ class KomentarController extends Controller
 
     public function viewById($id)
     {
+        $this->counter('Komentar');
+
         $komentar = Komentar::find($id);
         return response()->json([
             'message' => 'Data komentar Loaded Successfully',
@@ -55,6 +60,8 @@ class KomentarController extends Controller
 
     public function create(Request $request)
     {
+        $this->counter('Komentar');
+
         $user = Auth::user();
 
         if ($user->role == 'admin') {
@@ -85,6 +92,8 @@ class KomentarController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->counter('Komentar');
+
         $komentar = Komentar::find($id);
         $user = Auth::user();
 
@@ -116,6 +125,8 @@ class KomentarController extends Controller
 
     public function destroy($id)
     {
+        $this->counter('Komentar');
+        
         $user = Auth::user();
 
         if ($user->role == 'admin') {

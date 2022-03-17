@@ -75,6 +75,9 @@
                                         "foto": "varchar(255)"
                                     }
                                 }
+                                "Parameter": {
+                                    "order": "DESC or ASC"
+                                }
                             </code>
                         </pre>
                     </div>
@@ -136,6 +139,10 @@
                                         "role": "varchar(25)",
                                         "foto": "varchar(255)"
                                     }
+                                }
+                                "Path to file": "https://api.kotabogor.my.id/storage/images/album/{file_name}"
+                                "Parameter": {
+                                    "order": "DESC or ASC"
                                 }
                             </code>
                         </pre>
@@ -200,6 +207,7 @@
                                         "foto": "varchar(255)"
                                     }
                                 }
+                                "Path to file": "https://api.kotabogor.my.id/storage/images/banner_announce/{file_name}"
                             </code>
                         </pre>
                     </div>
@@ -277,6 +285,19 @@
                                         "foto": "varchar(255)"
                                     }
                                 }
+                                "Path to file": "https://api.kotabogor.my.id/storage/images/berita/{file_name}"
+                                "Parameter": {
+                                    "berita": {
+                                        "order": "DESC or ASC",
+                                        "category": "keywords",
+                                    },
+                                    "beritaPublic": {
+                                        "order": "DESC or ASC",
+                                        "search": "keywords",
+                                        "category": "keywords",
+                                        "perPage": "Pagination Size"
+                                    }
+                                }
                             </code>
                         </pre>
                     </div>
@@ -335,6 +356,7 @@
                                         "keterangan": "varchar(100)"
                                     }
                                 }
+                                "Path to file": "https://api.kotabogor.my.id/storage/images/foto/{file_name}"
                             </code>
                         </pre>
                     </div>
@@ -463,6 +485,7 @@
                                         "foto": "varchar(255)"
                                     }
                                 }
+                                "Path to file": "https://api.kotabogor.my.id/storage/images/statis/{file_name}"
                             </code>
                         </pre>
                     </div>
@@ -525,6 +548,7 @@
                                         "foto": "varchar(255)"
                                     }
                                 }
+                                "Path to file": "https://api.kotabogor.my.id/storage/images/video/{file_name}"
                             </code>
                         </pre>
                     </div>

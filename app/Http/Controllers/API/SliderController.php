@@ -8,37 +8,46 @@ use App\Models\Counter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 class SliderController extends Controller
 {
-    public function view()
+    public function counter($API)
     {
-        // Counter
         $today = Carbon::today()->toDateString();
-        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Slider')->where('tanggal', $today)->get();
-        $tanggal = Counter::select('tanggal')->where('api', 'Slider')->where('tanggal', $today)->first();
+        $check = Counter::select('api', 'tanggal', 'visit')->where('api', $API)->where('tanggal', $today)->get();
+        $tanggal = Counter::select('tanggal')->where('api', $API)->where('tanggal', $today)->first();
 
         if ($check->isEmpty()) {
             $counter = new Counter;
-            $counter->api = 'Slider';
+            $counter->api = $API;
             $counter->tanggal = $today;
             $counter->visit = 1;
             $counter->save();
         } elseif ($tanggal->tanggal == $today) {
-            $counter = Counter::where('api', 'Slider')->where('tanggal', $today);
+            $counter = Counter::where('api', $API)->where('tanggal', $today);
             $counter->increment('visit');
         } elseif ($tanggal->tanggal != $today) {
             $counter = new Counter;
-            $counter->api = 'Slider';
+            $counter->api = $API;
             $counter->tanggal = $today;
             $counter->visit = 1;
             $counter->save();
         }
-        // End Counter
+    }
 
-        $slider = Slider::orderBy('id', 'ASC')->get();
+    public function view(Request $request)
+    {
+        $this->counter('Slider');
+
+        if ($request->order == 'DESC' or $request->order == 'ASC') {
+            $slider = Slider::orderBy('id', 'ASC')->get();
+        } else {
+            $slider = Slider::orderBy('id', 'ASC')->get();
+        }
+        
         return response()->json([
             'message' => 'Data slider Loaded Successfully',
             'slider' => $slider
@@ -47,6 +56,8 @@ class SliderController extends Controller
 
     public function viewById($id)
     {
+        $this->counter('Slider');
+
         $slider = Slider::find($id);
         return response()->json([
             'message' => 'Data slider Loaded Successfully',
@@ -56,6 +67,8 @@ class SliderController extends Controller
 
     public function create(Request $request)
     {
+        $this->counter('Slider');
+
         $user = Auth::user();
 
         if ($user->role == 'admin') {
@@ -90,6 +103,8 @@ class SliderController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->counter('Slider');
+
         $slider = Slider::find($id);
         $user = Auth::user();
 
@@ -130,6 +145,8 @@ class SliderController extends Controller
 
     public function destroy($id)
     {
+        $this->counter('Slider');
+
         $user = Auth::user();
         $slider = Slider::find($id);
         $destination = 'images/slider/' . $slider->gambar;

@@ -71,6 +71,9 @@
                             "updated_at": "Timestamp"
                         }
                         "Path to file": "https://api.kotabogor.my.id/storage/images/slider/{file_name}"
+                        "Parameter": {
+                            "order": "DESC or ASC"
+                        }
                     </code>
                 </pre>
             </div>

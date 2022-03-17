@@ -13,30 +13,33 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DokumenController extends Controller
 {
-    public function view()
+    public function counter($API)
     {
-        // Counter
         $today = Carbon::today()->toDateString();
-        $check = Counter::select('api', 'tanggal', 'visit')->where('api', 'Dokumen')->where('tanggal', $today)->get();
-        $tanggal = Counter::select('tanggal')->where('api', 'Dokumen')->where('tanggal', $today)->first();
+        $check = Counter::select('api', 'tanggal', 'visit')->where('api', $API)->where('tanggal', $today)->get();
+        $tanggal = Counter::select('tanggal')->where('api', $API)->where('tanggal', $today)->first();
 
         if ($check->isEmpty()) {
             $counter = new Counter;
-            $counter->api = 'Dokumen';
+            $counter->api = $API;
             $counter->tanggal = $today;
             $counter->visit = 1;
             $counter->save();
         } elseif ($tanggal->tanggal == $today) {
-            $counter = Counter::where('api', 'Dokumen')->where('tanggal', $today);
+            $counter = Counter::where('api', $API)->where('tanggal', $today);
             $counter->increment('visit');
         } elseif ($tanggal->tanggal != $today) {
             $counter = new Counter;
-            $counter->api = 'Dokumen';
+            $counter->api = $API;
             $counter->tanggal = $today;
             $counter->visit = 1;
             $counter->save();
         }
-        // End Counter
+    }
+
+    public function view()
+    {
+        $this->counter('Dokumen');
         
         $dokumen = Dokumen::orderBy('id', 'ASC')->get();
         return response()->json([
@@ -47,6 +50,8 @@ class DokumenController extends Controller
 
     public function viewById($id)
     {
+        $this->counter('Dokumen');
+
         $dokumen = Dokumen::find($id);
         return response()->json([
             'message' => 'Data dokumen Loaded Successfully',
@@ -56,6 +61,8 @@ class DokumenController extends Controller
 
     public function create(Request $request)
     {
+        $this->counter('Dokumen');
+
         $user = Auth::user();
 
         if ($user->role == 'admin') {
@@ -90,6 +97,8 @@ class DokumenController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->counter('Dokumen');
+
         $dokumen = Dokumen::find($id);
         $user = Auth::user();
 
@@ -130,6 +139,8 @@ class DokumenController extends Controller
 
     public function destroy($id)
     {
+        $this->counter('Dokumen');
+        
         $user = Auth::user();
         $dokumen = Dokumen::find($id);
         $destination = 'files/dokumen/' . $dokumen->file;
