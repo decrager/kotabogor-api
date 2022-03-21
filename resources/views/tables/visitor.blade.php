@@ -68,6 +68,10 @@
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }
+                        "Parameter": {
+                            "total" = "1 or 0",
+                            "limit" = "num"
+                        }
                     </code>
                 </pre>
             </div>

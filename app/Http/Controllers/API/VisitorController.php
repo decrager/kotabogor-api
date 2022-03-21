@@ -36,11 +36,18 @@ class VisitorController extends Controller
         }
     }
     
-    public function view()
+    public function view(Request $request)
     {
         $this->counter('Visitor');
-        
-        $visitor = Visitor::orderBy('id', 'ASC')->get();
+
+        if ($request->total) {
+            $visitor = Visitor::select('total_visit')->sum('total_visit');
+        } elseif ($request->limit) {
+            $visitor = Visitor::orderBy('id', 'DESC')->take($request->limit)->get();
+        } else {
+            $visitor = Visitor::orderBy('id', 'ASC')->get();
+        }
+
         return response()->json([
             'message' => 'Data visitor Loaded Successfully',
             'visitor' => $visitor
