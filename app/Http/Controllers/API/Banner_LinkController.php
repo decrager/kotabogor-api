@@ -70,7 +70,7 @@ class Banner_LinkController extends Controller
                 'judul' => 'required|max:85',
                 'gambar' => 'required|mimes:jpeg,jpg,png|max:3072',
                 'link' => 'required|max:100',
-                'status' => 'required|in:0.1',
+                'status' => 'required|in:0,1',
             ]);
 
             $file = $request->file('gambar');
@@ -107,7 +107,7 @@ class Banner_LinkController extends Controller
                 'judul' => 'required|max:85',
                 'gambar' => 'required|mimes:jpeg,jpg,png|max:3072',
                 'link' => 'required|max:100',
-                'status' => 'required|in:0.1',
+                'status' => 'required|in:0,1',
             ]);
 
             $file = $request->file('gambar');
