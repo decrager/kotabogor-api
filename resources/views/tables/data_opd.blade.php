@@ -63,15 +63,15 @@
                     <code class="language-json text-left pt-3">
                         {
                             "id": "int(3)",
-                            "nama_opd": "varchar(50)",
-                            "foto_kantor": "varchar(255)",
-                            "alamat": "varchar(100)",
-                            "telp": "varchar(15)",
-                            "email": "varchar(50)",
-                            "website": "varchar(50)",
-                            "twitter_link": "varchar(100)",
-                            "ig_link": "varchar(100)",
-                            "facebook_link": "varchar(100)",
+                            "nama_opd": "varchar(50)", // Fillable | Required
+                            "foto_kantor": "varchar(255)", // Fillable | Required
+                            "alamat": "varchar(100)", // Fillable | Required
+                            "telp": "varchar(15)", // Fillable | Required
+                            "email": "varchar(50)", // Fillable | Required
+                            "website": "varchar(50)", // Fillable | Required
+                            "twitter_link": "varchar(100)", // Fillable | Nullable
+                            "ig_link": "varchar(100)", // Fillable | Nullable
+                            "facebook_link": "varchar(100)", // Fillable | Nullable
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }

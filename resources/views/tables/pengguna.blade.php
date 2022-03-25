@@ -63,13 +63,13 @@
                     <code class="language-json text-left pt-3">
                         {
                             "id": "int(11)",
-                            "nama": "varchar(50)",
-                            "email": "varchar(50)",
-                            "telp": "varchar(15)",
-                            "username": "varchar(25)",
-                            "password": "varchar(100)",
-                            "role": "varchar(25)",
-                            "foto": "varchar(255)",
+                            "nama": "varchar(50)", // Fillable | Required
+                            "email": "varchar(50)", // Fillable | Required
+                            "telp": "varchar(15)", // Fillable | Required
+                            "username": "varchar(25)", // Fillable | Required
+                            "password": "varchar(100)", // Fillable | Required
+                            "role": "varchar(25)", // Fillable | Required
+                            "foto": "varchar(255)", // Fillable | Required
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }

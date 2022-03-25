@@ -63,10 +63,10 @@
                     <code class="language-json text-left pt-3">
                         {
                             "id": "int(11)",
-                            "judul": "varchar(100)",
-                            "tgl": "date(yyyy-mm-dd)",
-                            "cover": "varchar(255)",
-                            "user_id": "int(11)",
+                            "judul": "varchar(100)", // Fillable | Required
+                            "tgl": "date(yyyy-mm-dd)", // Fillable | Required
+                            "cover": "varchar(255)", // Fillable | Required
+                            "user_id": "int(11)", // Fillable | Required
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }

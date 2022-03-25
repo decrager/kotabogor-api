@@ -63,12 +63,12 @@
                     <code class="language-json text-left pt-3">
                         {
                             "id": "int(11)",
-                            "judul": "varchar(100)",
-                            "gambar": "varchar(255)",
-                            "keterangan": "varchar(250)",
-                            "status": "enum('0','1')",
-                            "link": "varchar(100)",
-                            "user_id": "int(11)",
+                            "judul": "varchar(100)", // Fillable | Required
+                            "gambar": "varchar(255)", // Fillable | Required
+                            "keterangan": "varchar(250)", // Fillable | Required
+                            "status": "enum('0','1')", // Fillable | Required
+                            "link": "varchar(100)", // Fillable | Required
+                            "user_id": "int(11)", // Fillable | Required
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }

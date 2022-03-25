@@ -37,8 +37,8 @@
                 <pre>
                     <code class="language-json text-left pt-3">
                         {
-                            "email" : "varchar(255)",
-                            "password" : "varchar(255)"
+                            "email" : "varchar(255)", // Fillable | Required
+                            "password" : "varchar(255)" // Fillable | Required
                         }
                     </code>
                 </pre>

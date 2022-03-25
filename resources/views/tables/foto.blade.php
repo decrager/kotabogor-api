@@ -63,10 +63,10 @@
                     <code class="language-json text-left pt-3">
                         {
                             "id": "int(11)",
-                            "album_id": "int(11)",
-                            "judul": "varchar(100)",
-                            "foto": "varchar(255)",
-                            "keterangan": "varchar(200)",
+                            "album_id": "int(11)", // Fillable | Required
+                            "judul": "varchar(100)", // Fillable | Required
+                            "foto": "varchar(255)", // Fillable | Required
+                            "keterangan": "varchar(200)", // Fillable | Required
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }

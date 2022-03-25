@@ -63,10 +63,10 @@
                     <code class="language-json text-left pt-3">
                         {
                             "id": "int(11)",
-                            "judul": "varchar(100)",
-                            "gambar": "varchar(255)",
-                            "link": "varchar(100)",
-                            "status": "enum('0','1')",
+                            "judul": "varchar(100)", // Fillable | Required
+                            "gambar": "varchar(255)", // Fillable | Required
+                            "link": "varchar(100)", // Fillable | Required
+                            "status": "enum('0','1')", // Fillable | Required
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }
