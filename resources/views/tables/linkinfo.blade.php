@@ -63,10 +63,10 @@
                     <code class="language-json text-left pt-3">
                         {
                             "id": "int(11)",
-                            "judul": "varchar(50)", // Fillable | Required
-                            "keterangan": "varchar(200)", // Fillable | Required
-                            "link": "varchar(100)", // Fillable | Required
-                            "gambar": "varchar(255)", // Fillable | Required
+                            "judul": "varchar(50)", // Request Body
+                            "keterangan": "varchar(200)", // Request Body
+                            "link": "varchar(100)", // Request Body
+                            "gambar": "varchar(255)", // Request Body
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }

@@ -24,6 +24,7 @@ class StatisticController extends Controller
 
         $chart = Counter::selectRaw('api, SUM(visit) AS visit')
             ->groupBy('api')
+            ->where('api', 'not like', '%' . 'Visitor' . '%')
             ->get()->toArray();
 
         $api = array_column($chart, 'api');

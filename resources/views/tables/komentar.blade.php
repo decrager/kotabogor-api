@@ -63,10 +63,10 @@
                     <code class="language-json text-left pt-3">
                         {
                             "id": "int(11)",
-                            "berita_id": "int(11)", // Fillable | Required
-                            "nama": "varchar(50)", // Fillable | Required
-                            "email": "varchar(50)", // Fillable | Required
-                            "komentar": "text", // Fillable | Required
+                            "berita_id": "int(11)", // Request Body
+                            "nama": "varchar(50)", // Request Body
+                            "email": "varchar(50)", // Request Body
+                            "komentar": "text", // Request Body
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }

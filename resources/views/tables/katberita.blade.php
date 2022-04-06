@@ -63,8 +63,8 @@
                     <code class="language-json text-left pt-3">
                         {
                             "id": "int(11)",
-                            "kategori": "varchar(50)", // Fillable | Required
-                            "keterangan": "varchar(50)", // Fillable | Required
+                            "kategori": "varchar(50)", // Request Body
+                            "keterangan": "varchar(50)", // Request Body
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }

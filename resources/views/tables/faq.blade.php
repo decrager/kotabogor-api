@@ -63,8 +63,8 @@
                     <code class="language-json text-left pt-3">
                         {
                             "id": "int(11)",
-                            "pertanyaan": "text", // Fillable | Required
-                            "jawaban": "text", // Fillable | Required
+                            "pertanyaan": "text", // Request Body
+                            "jawaban": "text", // Request Body
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }

@@ -63,8 +63,8 @@
                     <code class="language-json text-left pt-3">
                         {
                             "id": "int(11)",
-                            "tgl": "date(yyyy-mm-dd)", // Fillable | Required
-                            "total_visit": "bigint", // Fillable | Required
+                            "tgl": "date(yyyy-mm-dd)", // Request Body
+                            "total_visit": "bigint", // Request Body
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }

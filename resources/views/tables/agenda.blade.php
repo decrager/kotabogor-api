@@ -63,12 +63,12 @@
                     <code class="language-json text-left pt-3">
                         {
                             "id": "int(11)",
-                            "hari": "varchar(10)", // Fillable | Required
-                            "tgl": "date(yyyy-mm-dd)", // Fillable | Required
-                            "waktu": "time(H:i:s)", // Fillable | Required
-                            "lokasi": "varchar(100)", // Fillable | Required
-                            "kegiatan": "varchar(250)", // Fillable | Required
-                            "user_id": "int(11)", // Fillable | Required
+                            "hari": "varchar(10)", // Request Body
+                            "tgl": "date(yyyy-mm-dd)", // Request Body
+                            "waktu": "time(H:i:s)", // Request Body
+                            "lokasi": "varchar(100)", // Request Body
+                            "kegiatan": "varchar(250)", // Request Body
+                            "user_id": "int(11)", // Request Body
                             "created_at": "Timestamp",
                             "updated_at": "Timestamp"
                         }
